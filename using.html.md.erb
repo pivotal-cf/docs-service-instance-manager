@@ -9,33 +9,32 @@ This topic describes how to use Service Instance Manager (SIM) for Pivotal Cloud
 
 ##<a id='using'></a> Using SIM for PCF
 
-Follow the procedures below to to use SIM for PCF.
+Follow the procedures below to use SIM for PCF.
 
 ### <a id="login"></a> Log in to SIM for PCF
 
-1. Check the URL for the foundation you want to log in to.
+To log in to a foundation, use the username and password you have registered with the foundation. If you are unsure of the foundatione, check the URL. A typical foundation URL looks similar to the one below.
 
-For example
-https<span>:</span>//login.YOUR-FOUNDATION.YOUR-DOMAIN.com/login
-
-1. Log in with the username and password registered you have for the foundation listed in the URL.
+  `https<span>:</span>//login.YOUR-FOUNDATION.YOUR-DOMAIN.com/login`
 
 <%# add screenshot %>
 
-<p class="note"><strong>Note:</strong>You must log in to each foundation separately.</p>
+<p class="note"><strong>Note:</strong> You must log in to each foundation separately.</p>
 
 ### <a id="filter-instances"></a> Filter Service Instances with SIM for PCF
 
-To filter by name or GUID, simply enter the desired name or GUID in the search bar.
-
-To filter by a category, enter `CATEGORY:VALUE`.
-For example:
+To filter by name or GUID, enter a name or GUID in the search bar.
 
 <%# add screenshot %>
 
-`status:error` or `foundation:YOUR-FOUNDATION`
+To filter by a category, enter the query in the search bar in the format `CATEGORY:VALUE`.
 
-The available categories are:
+  For example:
+  `status:error` or `foundation:YOUR-FOUNDATION`
+
+<%# add screenshot %>
+
+The available filter categories are:
 
 * Foundation
 * Org
@@ -52,12 +51,12 @@ You can also filter by clicking on a bubble below the search bar.
 
 ### <a id="delete-instances"></a> Delete Service Instances with SIM for PCF
 
-<p class="note"><strong>Note:</strong>SIM does not allow you to delete a service instance with service bindings, service keys, or route associations.</p>
+<p class="note"><strong>Note:</strong> SIM does not allow you to delete a service instance with service bindings, service keys, or route associations.</p>
 
 To delete a service instance:
 
-1. Click the **DELETE** button at the bottom-right of the service instance card.
-1. Click **DELETE** in the warning prompt.
+1. Click **DELETE** at the bottom-right of the service instance card.
+1. Click **DELETE** in the warning pop-up.
 
 
 ### <a id="log-out"></a> Log out of SIM for PCF
@@ -65,23 +64,3 @@ To delete a service instance:
 To log out of all foundations simultaneously, click **logout** at the top-right of the page.
 
 <%# add screenshot %>
-
-<%# This topic should include any instructions for how to use the service or dashboard created by the app.
-Give procedures for how to perform the different functions offered by your product and provide screenshots where necessary. %>
-
-<%# Other topics that you should address in your documentation:
-
-+ **Troubleshooting**---If you include a Troubleshooting section, follow the Symptom/Explanation format used in the
-  [Okta Troubleshooting](http://docs.pivotal.io/p-identity/okta/troubleshooting.html) topic.
-
-+ **Disaster recovery**--How do you recover data from the tile after a disaster? How do you perform backups?
-
-+ **Scalability**--How do you scale up the tile? How do you know when you need to scale up?
-
-+ **Monitoring**--How do you monitor the tile? Does the tile send events to the Loggregator Firehose?
-
-+ **Auditing**--Can PCF operators use the standard Accounting and Usage reports?
-
-+ **Security**--How is this tile secured? How is the data secured?
-
-You can create separate pages for each of these topics or group them in one page about administering or maintaining the tile. %>

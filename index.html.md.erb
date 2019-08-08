@@ -5,29 +5,23 @@ owner: Fleet Management
 
 <strong><%= modified_date %></strong>
 
-**If this product is in beta, keep and edit the warning note below.**
-<p class="note warning">
-<strong>Warning: </strong>
-Service Instance Manager for PCF is currently in beta and is intended for evaluation and test purposes only.
-Do not use this product in a PCF production environment.
+<p class="note warning"><strong>Warning:</strong> Service Instance Manager for PCF is currently in beta and is
+   intended for evaluation and test purposes only. Do not use this product in a PCF production environment.
 </p>
-
-<%# This topic begins with a brief description of what the product (e.g. Apigee Edge Service Broker for PCF)
-does, whereas the Overview section below describes what the service itself (e.g. Apigee Edge) does. See below
-for an example. %>
 
 This documentation describes the Service Instance Manager (SIM) for Pivotal Cloud Foundry (PCF). SIM for PCF enables operators to more easily manage large numbers of service instances.
 
+
 ## <a id="overview"></a>Overview
 
-SIM for PCF gathers information about your service instances from multiple foundations through the cf API and presents this information in a web UI. From here, operators can view, filter and delete service instances.
+SIM for PCF gathers information about service instances from multiple foundations through the cf API and presents this information in a web UI. From here, operators can view, filter, and delete service instances.
 
 
 ## <a id="features"></a>Key Features
 
 Through SIM for PCF, operators can:
 
-* View and filter service instances by name, GUID, bindings, status, org, space, and foundation
+* View and filter service instances by foundation, org, space, service type, status, service keys, and service bindings
 * Delete service instances
 
 
@@ -55,7 +49,7 @@ The following table provides version and version-support information about SIM f
         <td>All</td>
     </tr>
     <tr>
-       <td>BOSH stemcell version</td> <%# ask Jack if this applies %>
+       <td>BOSH stemcell version</td>
        <td>Ubuntu Xenial</td>
     </tr>
     <tr>
@@ -67,24 +61,16 @@ The following table provides version and version-support information about SIM f
 
 ## <a id="reqs"></a>Requirements
 
-<%# Provide any general or specific requirements, prerequisites, or dependencies here.
-A general requirement might be something such as, "An AppDynamics account."
-A specific requirement might be something such as, "Packaging Dependencies for Offline Buildpacks." %>
-
-SIM for PCF has the following prerequisites:
+SIM for PCF has the following requirements:
 
 * PCF
-* User Account and Authentication (UAA) server <%# get xref link %>
+* [User Account and Authentication (UAA) server](https://docs.pivotal.io/pivotalcf/uaa/uaa-overview.html)
 
 ## <a id="limitations"></a>Limitations
 
-SIM for PCF has been tested with a maximum of approximately 1000 <%# be more precise %> Cloud Foundry service instances
+SIM for PCF has been tested with a maximum of approximately 1000 Cloud Foundry service instances.
 
 ## <a id="feedback"></a>Feedback
 
 If you have a feature request, questions, or information about an issue, please email
 [Pivotal Cloud Foundry Feedback](mailto:cf-feedback@pivotal.io) or send an email to [Fleet Management](mailto:fleet-management@pivotal.io.)
-
-## <a id="license"></a>License <%# does this apply? Other PCF products don't have this section. %>
-
-<%# List any license information here. %>
