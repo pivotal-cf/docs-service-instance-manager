@@ -1,18 +1,75 @@
 ---
-title: Using YOUR-PRODUCT-NAME
-owner: Partners
+title: Using Service Instance Manager for PCF
+owner: Fleet Management
 ---
 
 <strong><%= modified_date %></strong>
 
-This topic describes how to use YOUR-PRODUCT-NAME.
+This topic describes how to use Service Instance Manager (SIM) for Pivotal Cloud Foundry (PCF).
 
-##<a id='using'></a> Using YOUR-PRODUCT-NAME
+##<a id='using'></a> Using SIM for PCF
 
-**This topic should include any instructions for how to use the service or dashboard created by the tile.
-Give procedures for how to perform the different functions offered by your product and provide screenshots where necessary.**
+Follow the procedures below to to use SIM for PCF.
 
-Other topics that you should address in your documentation:
+### <a id="login"></a> Log in to SIM for PCF
+
+1. Check the URL for the foundation you want to log in to.
+
+For example
+https<span>:</span>//login.YOUR-FOUNDATION.YOUR-DOMAIN.com/login
+
+1. Log in with the username and password registered you have for the foundation listed in the URL.
+
+<%# add screenshot %>
+
+<p class="note"><strong>Note:</strong>You must log in to each foundation separately.</p>
+
+### <a id="filter-instances"></a> Filter Service Instances with SIM for PCF
+
+To filter by name or GUID, simply enter the desired name or GUID in the search bar.
+
+To filter by a category, enter `CATEGORY:VALUE`.
+For example:
+
+<%# add screenshot %>
+
+`status:error` or `foundation:YOUR-FOUNDATION`
+
+The available categories are:
+
+* Foundation
+* Org
+* Space
+* Service Type
+* Status
+* Service Keys
+* Service Bindings
+
+You can also filter by clicking on a bubble below the search bar.
+
+<%# add screenshot %>
+
+
+### <a id="delete-instances"></a> Delete Service Instances with SIM for PCF
+
+<p class="note"><strong>Note:</strong>SIM does not allow you to delete a service instance with service bindings, service keys, or route associations.</p>
+
+To delete a service instance:
+
+1. Click the **DELETE** button at the bottom-right of the service instance card.
+1. Click **DELETE** in the warning prompt.
+
+
+### <a id="log-out"></a> Log out of SIM for PCF
+
+To log out of all foundations simultaneously, click **logout** at the top-right of the page.
+
+<%# add screenshot %>
+
+<%# This topic should include any instructions for how to use the service or dashboard created by the app.
+Give procedures for how to perform the different functions offered by your product and provide screenshots where necessary. %>
+
+<%# Other topics that you should address in your documentation:
 
 + **Troubleshooting**---If you include a Troubleshooting section, follow the Symptom/Explanation format used in the
   [Okta Troubleshooting](http://docs.pivotal.io/p-identity/okta/troubleshooting.html) topic.
@@ -27,5 +84,4 @@ Other topics that you should address in your documentation:
 
 + **Security**--How is this tile secured? How is the data secured?
 
-You can create separate pages for each of these topics or group them in one page about administering or maintaining the tile.
-
+You can create separate pages for each of these topics or group them in one page about administering or maintaining the tile. %>
