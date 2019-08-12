@@ -6,35 +6,35 @@ owner: Fleet Management
 <strong><%= modified_date %></strong>
 
 <p class="note warning"><strong>Warning:</strong> Service Instance Manager for PCF is currently in beta and is
-   intended for evaluation and test purposes only. Do not use this product in a PCF production environment.
+   intended for evaluation and test purposes only.
 </p>
 
-This documentation describes the Service Instance Manager (SIM) for Pivotal Cloud Foundry (PCF). SIM for PCF enables operators to more easily manage large numbers of service instances.
+This documentation describes the Service Instance Manager for Pivotal Cloud Foundry (PCF). Service Instance Manager for PCF enables operators to more easily manage large numbers of service instances.
 
 
 ## <a id="overview"></a>Overview
 
-SIM for PCF gathers information about service instances from multiple foundations through the cf API and presents this information in a web UI. From here, operators can view, filter, and delete service instances.
+Service Instance Manager gathers information about service instances from multiple cloud foundries through the CF API and presents this information in a web GUI. From here, operators can view, filter, and delete service instances.
 
 
 ## <a id="features"></a>Key Features
 
-Through SIM for PCF, operators can:
+Through Service Instance Manager, operators can:
 
-* View and filter service instances by foundation, org, space, service type, status, service keys, and service bindings
+* View and filter service instances by foundation, org, space, service offering, status, service keys, service bindings, and bound apps
 * Delete service instances
 
 
 ## <a id="snapshot"></a>Product Snapshot
 
-The following table provides version and version-support information about SIM for PCF.
+The following table provides version and version-support information about Service Instance Manager for PCF.
 
 <table class="nice">
     <th>Element</th>
     <th>Details</th>
     <tr>
         <td>App version</td>
-        <td>v1.0</td>
+        <td>v0.2.0</td>
     </tr>
     <tr>
         <td>Release date</td>
@@ -49,10 +49,6 @@ The following table provides version and version-support information about SIM f
         <td>All</td>
     </tr>
     <tr>
-       <td>BOSH stemcell version</td>
-       <td>Ubuntu Xenial</td>
-    </tr>
-    <tr>
         <td>IaaS support</td>
         <td>All</td>
     </tr>
@@ -61,14 +57,14 @@ The following table provides version and version-support information about SIM f
 
 ## <a id="reqs"></a>Requirements
 
-SIM for PCF has the following requirements:
+Service Instance Manager has the following requirements:
 
 * PCF
 * [User Account and Authentication (UAA) server](https://docs.pivotal.io/pivotalcf/uaa/uaa-overview.html)
 
 ## <a id="limitations"></a>Limitations
 
-SIM for PCF has been tested with a maximum of approximately 1000 Cloud Foundry service instances.
+Service Instance Manager has been tested with approximately 2000 Cloud Foundry service instances across two Cloud Foundries. Higher numbers may impact performance.
 
 ## <a id="feedback"></a>Feedback
 

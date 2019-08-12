@@ -5,9 +5,9 @@ owner: Fleet Management
 
 <strong><%= modified_date %></strong>
 
-This topic describes how to use Service Instance Manager (SIM) for Pivotal Cloud Foundry (PCF).
+This topic describes how to use Service Instance Manager (SIM) for Pivotal Cloud Foundry.
 
-## <a id="login"></a> Log in to SIM for PCF
+## <a id="login"></a> Log in to Service Instance Manager
 
 To log in to a foundation, use the username and password you have registered with the foundation.
 
@@ -18,7 +18,7 @@ If you are unsure of the foundation name, check the URL. A typical foundation UR
 
 <p class="note"><strong>Note:</strong> You must log in to each foundation separately.</p>
 
-## <a id="filter-instances"></a> Filter Service Instances with SIM for PCF
+## <a id="filter-instances"></a> Filter Service Instances
 
 You can filter service instances by a variety of properties.
 
@@ -32,11 +32,11 @@ You can filter service instances by a variety of properties.
 
     The available filters are:
 
-    * `app:APP-BINDING`
+    * `app:BOUND-APP-NAME`
     * `foundation:FOUNDATION-NAME`
     * `org:ORG-NAME`
     * `space:SPACE-NAME`
-    * `service:PLAN-SERVICE`
+    * `service:SERVICE-OFFERING-NAME`
     * `status:ok` and `status:error`
     * `keys:true` and `keys:false`
     * `bindings:true` and `bindings:false`
@@ -44,18 +44,12 @@ You can filter service instances by a variety of properties.
 * You can also filter by clicking on a filter bubble below the search bar.
 
 
-## <a id="delete-instances"></a> Delete Service Instances with SIM for PCF
+## <a id="delete-instances"></a> Delete Service Instances
 
-<p class="note"><strong>Note:</strong> SIM does not allow you to delete a service instance with service bindings, service keys, or route associations.</p>
+<p class="note"><strong>Note:</strong> Service Instance Manager does not allow you to delete a service instance with service bindings, service keys, or route associations.</p>
 
 To delete a service instance, do the following.
 
 1. Click **DELETE** at the bottom-right of the service instance card.
 1. Click **DELETE** in the warning pop-up.
 
-
-## <a id="log-out"></a> Log out of SIM for PCF
-
-To log out of all foundations, click **logout** at the top-right of the page.
-
-  <%= image_tag("images/log-out.png", :alt => "Log out button") %>
