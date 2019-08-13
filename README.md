@@ -1,4 +1,4 @@
-# Service Instance Manager (SIM) for PCF
+# Service Instance Manager for Pivotal Cloud Foundry
 
 ## Where is the book repo?
 https://github.com/pivotal-cf/docs-book-sim
