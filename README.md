@@ -33,7 +33,7 @@ Always make changes you want carried forward in the master branch. This includes
 We need to decide on product name short forms:
 + Longest name = **Service Instance Manager for Pivotal Cloud Foundry**
 + Long name if PCF has already been spelled out on the page = **Service Instance Manager for PCF**
-+ Short name, use on the page after one of the long names has been used = **Service Instance Manager** or **SIM**?
++ Short name, use on the page after one of the long names has been used = **Service Instance Manager**
 
 ## Pipelines
 
