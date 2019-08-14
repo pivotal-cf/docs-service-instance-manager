@@ -9,26 +9,25 @@ This topic describes how to use Service Instance Manager for Pivotal Cloud Found
 
 ## <a id="login"></a> Log in to Service Instance Manager
 
-To log in to a foundation, use the username and password you have registered with the foundation.
+Follow the steps below to log in to Service Instance Manager and the foundation that contains service instances you want to manage.
 
-If you are unsure of the foundation name, check the URL. A typical foundation URL looks similar to the one below.
+1. Open a web browser and go to https<span>:</span>//login.YOUR-PCF-FOUNDATION-NAME.fleet-management.YOUR-DOMAIN/login.
 
-  <code>https<span>:</span>//login.YOUR-FOUNDATION.YOUR-DOMAIN.com/login</code>
+1. Log in with your registered email address and password.
 
-
-<p class="note"><strong>Note:</strong> You must log in to each foundation separately.</p>
+<p class="note"><strong>Note:</strong> Service Instance Manager only displays service instances for the foundations you are logged into. To manage the service instances for multiple foundations, you must log in to each foundation separately.</p>
 
 ## <a id="filter-instances"></a> Filter Service Instances
 
 You can filter service instances by a variety of properties.
 
-* To filter by name or GUID, enter a name or GUID in the search bar.
+* To filter by name or GUID, enter a name or GUID in the search field.
 
-    <%= image_tag("images/search-by-name.png", :alt => "A name in the search bar") %>
+    <%= image_tag("images/search-by-name.png", :alt => "A name in the search field") %>
 
-* To filter by a category, enter the query in the search bar in the format `FILTER:VALUE`.<br><br>
+* To filter by a category, enter the query in the search field in the format `FILTER:VALUE`.<br><br>
 
-    <%= image_tag("images/filter-by-status.png", :alt => "Status filter in the search bar") %>
+    <%= image_tag("images/filter-by-status.png", :alt => "Status filter in the search field") %>
 
     The available filters are:
 
@@ -41,7 +40,7 @@ You can filter service instances by a variety of properties.
     * `keys:true` and `keys:false`
     * `bindings:true` and `bindings:false`
 
-* You can also filter by clicking on a filter bubble below the search bar.
+* You can also filter by clicking on a filter bubble below the search field.
 
 
 ## <a id="delete-instances"></a> Delete Service Instances
