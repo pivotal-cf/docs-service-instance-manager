@@ -17,17 +17,14 @@ Follow the steps below to log in to Service Instance Manager.
 
 1. Log in with the email address and password you use for that PCF foundation.
 
-  <%= image_tag("images/cf-login-page.png", :alt => "Cloud Foundry login page") %>
-
+     <%= image_tag("images/cf-login-page.png", :alt => "Cloud Foundry login page") %><br>
   * If this is the only PCF foundation that Service Instance Manager is configured to target, the Service Instance Manager UI appears.
   * If Service Instance Manager is configured to target any other PCF foundations, you are redirected to the
-  login page for the next foundation listed in `config.json`. Redirects continue until you have logged in to
-  every foundation that Service Instance Manager targets.
+      login page for the next foundation listed in `config.json`. Redirects continue until you have logged in to
+      every foundation that Service Instance Manager targets.
+    <%# To edit <code>config.json</code>, see <a href="insert link to doc section here when it exists">Edit config.json</a>. %>
 
-<p class="note"><strong>Note:</strong> You must log in to each PCF foundation listed in
-  <code>config.json</code> before you can use Service Instance Manager.
-  <%# To edit <code>config.json</code>, see <a href="insert link to doc section here when it exists">Edit config.json</a>. %>
-</p>
+1. Log in to each PCF foundation until the the Service Instance Manager UI appears.
 
 ## <a id="filter-instances"></a> Filter Service Instances
 
