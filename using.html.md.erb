@@ -10,13 +10,24 @@ to view and delete service instances across PCF foundations.
 
 ## <a id="login"></a> Log in to Service Instance Manager
 
-Follow the steps below to log in to Service Instance Manager and the foundation that contains service instances you want to manage.
+Follow the steps below to log in to Service Instance Manager.
 
-1. Open a web browser and go to https<span>:</span>//service-instance-manager.YOUR-PCF-FOUNDATION-URL.
+1. Open a web browser and go to
+<code>https<span>:</span>//service-instance-manager.YOUR-PCF-FOUNDATION-URL</code>.
 
-1. Log in with your registered email address and password.
+1. Log in with the email address and password you use for that PCF foundation.
 
-<p class="note"><strong>Note:</strong> Service Instance Manager only displays service instances for the foundations you are logged into. To manage the service instances for multiple foundations, you must log in to each foundation separately.</p>
+  <%= image_tag("images/cf-login-page.png", :alt => "Cloud Foundry login page") %>
+
+  * If this is the only PCF foundation that Service Instance Manager is configured to target, the Service Instance Manager UI appears.
+  * If Service Instance Manager is configured to target any other PCF foundations, you are redirected to the
+  login page for the next foundation listed in `config.json`. Redirects continue until you have logged in to
+  every foundation that Service Instance Manager targets.
+
+<p class="note"><strong>Note:</strong> You must log in to each PCF foundation listed in
+  <code>config.json</code> before you can use Service Instance Manager.
+  <%# To edit <code>config.json</code>, see <a href="insert link to doc section here when it exists">Edit config.json</a>. %>
+</p>
 
 ## <a id="filter-instances"></a> Filter Service Instances
 
@@ -46,7 +57,8 @@ You can filter service instances by a variety of properties.
 
 ## <a id="delete-instances"></a> Delete Service Instances
 
-<p class="note"><strong>Note:</strong> Service Instance Manager does not allow you to delete a service instance with service bindings, service keys, or route associations.</p>
+<p class="note"><strong>Note:</strong> Service Instance Manager does not allow you to delete a service instance with service bindings, service keys, or route associations.
+</p>
 
 To delete a service instance:
 
