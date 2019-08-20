@@ -38,16 +38,54 @@ You can filter service instances by a variety of properties.
 
     <%= image_tag("images/filter-by-status.png", :alt => "Status filter in the search field") %>
 
-    The available filters are:
+    The available filters and examples of each are shown in the table below.
 
-    * `app:BOUND-APP-NAME`
-    * `foundation:FOUNDATION-NAME`
-    * `org:ORG-NAME`
-    * `space:SPACE-NAME`
-    * `service:SERVICE-OFFERING-NAME`
-    * `status:ok` and `status:error`
-    * `keys:true` and `keys:false`
-    * `bindings:true` and `bindings:false`
+    <table>
+        <thead>
+        <tr>
+        <th><strong>Filter</strong></th>
+        <th><strong>Example</strong></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td><code>app:BOUND-APP-NAME</code></td>
+        <td><code>app:my-app</code></td>
+        </tr>
+        <tr>
+        <td><code>foundation:FOUNDATION-NAME</code></td>
+        <td><code>foundation:my-foundation</code></td>
+        </tr>
+        <tr>
+        <td><code>org:ORG-NAME</code></td>
+        <td><code>org:my-org</code></td>
+        </tr>
+        <tr>
+        <td><code>space:SPACE-NAME</code></td>
+        <td><code>space:my-space</code></td>
+        </tr>
+        <tr>
+        <td><code>service:SERVICE-OFFERING-NAME</code></td>
+        <td><code>service:p-rabbitmq</code></td>
+        </tr>
+        <tr>
+        <td><code>status:ok</code> and <code>status:error</code></td>
+        <td style="text-align:center">-</td>
+        </tr>
+        <tr>
+        <td><code>keys:true</code> and <code>keys:false</code></td>
+        <td style="text-align:center">-</td>
+        </tr>
+        <tr>
+        <td><code>bindings:true</code> and <code>bindings:false</code></td>
+        <td style="text-align:center">-</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p class="note"><strong>Note:</strong> <code>status</code>, <code>keys</code>, and <code>bindings</code>
+      can only be used with the values shown in the <strong>Filter</strong> column.
+    </p>
 
 * You can also filter by clicking on a filter bubble below the search field.
 
