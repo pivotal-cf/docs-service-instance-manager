@@ -1,34 +1,115 @@
 ---
-title: Installing and Configuring Service Instance Manager for PCF
+title: Installing and Configuring Pivotal Service Instance Manager
 owner: Fleet Management
 ---
 
 <strong><%= modified_date %></strong>
-
-This topic describes how to install and configure Service Instance Manager for Pivotal Cloud Foundry (PCF).
-
 ##<a id='install'></a> Install and Configure Service Instance Manager
 
-To install the Service Instance Manager file on the Ops Manager Installation Dashboard, do the following:
+Service Instance Manager is installed as two Cloud Foundry applications. These are deployed on a single Cloud Foundry (the host), and must share the same route.
 
-1. Download the product file from Pivotal Network.
+1. <code>service-instance-manager-api</code>
+    - Communicates with the Cloud Controller of all target Cloud Foundries
+2. <code>service-instance-manager</code>
+    - Hosts the web GUI
 
-1. Navigate to the Ops Manager Installation Dashboard and click **Import a Product** to upload the product file.
+Installation includes configuring the API app with the location of each target cloud foundry; creating a UAA client in each target Cloud Foundry; and pushing the apps to the host Cloud Foundry.
 
-1. Under **Import a Product**, click **+** next to the version number of Service Instance Manager.
-This adds the tile to your staging area.
+##<a id='requirements'></a> Requirements
 
-1. Click the newly added **Service Instance Manager** tile.
+1. cf CLI. <a href="https://docs.cloudfoundry.org/cf-cli/install-go-cli.html">See the cf-cli docs</a> for how to install.
+2. uaac CLI. <a href="https://github.com/cloudfoundry/cf-uaac">Available on github.</a>
+3. Service Instance Manager. Download the latest version from <a href="https://network.pivotal.io/products/service-instance-manager/">Pivotal Network</a>.
 
-1. **This portion of the procedure should tell the users how to configure the newly added tile by
-walking them through the sections. Which fields should they fill out? What are the different
-checkboxes? Include relevant screenshots here.**
+##<a id='api'></a> API Configuration
 
-1. Click **Save**.
+Modify <code>config.json</code> to include a section for each target Cloud Foundry.
 
-1. Return to the Ops Manager Installation Dashboard and click **Apply changes** to install Service Instance Manager tile.
+Required properties for each target Cloud Foundry:
 
-**If needed, include additional configuration information below. For example, maybe there are
-configuration options not required for installation but which could be useful for certain users. Typical topics include:**
-1. **Self-service**--Do you have recommendations on how to configure/design plans in the tile so that users can choose the best options for themselves?
-1. **High availability**--How do you configure/deploy X Service tile to be highly available?
+- <code>name</code>: A human readable name for that Cloud Foundry
+- <code>cfApi</code>: The URL of the target Cloud Foundry's api endpoint
+
+Optional properties:
+
+- <code>clientID</code>: The client_id in the UAA of the target Cloud Foundry. See below for instructions to create this client. Defaults to "fleet-manager".
+- <code>identityProviderName</code>: The name of the identity provider that can be optionally configured for a Cloud Foundry UAA. See below for instruction to find this name.
+
+
+##<a id='deploying'></a> Deploying the apps
+
+Before running the installation script, the cf CLI must be logged in to the Cloud Foundry that will host Service Instance Manager.
+
+```
+cf api https://api.host-cloud-foundry.example.com
+cf auth
+```
+
+
+Target the org and space into which SIM will be deployed:
+
+```
+cf target -o <host-org> -s <host-space>
+```
+
+Execute <code>install.sh</code> to push both the API and web apps. This will pass <code>config.json</code> to the API app.
+
+```
+./install.sh
+```
+To push service-instance-manager-api, CF will require the <code>node_buildpack</code> version specified in <code>api/manifest.yml</code>
+
+The service-instance-manager-api app must be able to reach the Cloud Controller API for each target Cloud Foundry.
+Depending on the network setup, extra steps may be required to allow traffic from the app to the target Cloud Foundries.
+
+The service-instance-manager web app only requires a connection to the service-instance-manager-api, and does not connect directly to the target Cloud Foundries.
+The two apps will be pushed with the same route due to browser cross origin access limitations. The web app expects the api to be available at <code>/api</code>.
+
+Before logging in to Service Instance Manager, see below for creating the required clients in UAA.
+
+
+#### UAA Client Creation
+
+Service Instance Manager requires a client to exist in the UAA of each target Cloud Foundry. When a user logs in to SIM, this client will be used to authenticate on behalf of the user. This means that SIM will have only the permissions available to that user on each target Cloud Foundry.
+
+To create the client in **each** target Cloud Foundry:
+
+1.  Target and authenticate with UAA for the Cloud Foundry
+
+    ```
+    uaac target <uaa.target-cf-system-domain.example.com>
+    uaac token client get
+    ```
+    This command will prompt for the admin credentials of UAA. These can be found in Ops Manager.
+    PAS Tile > Credentials tab > UAA section > Admin Client Credentials
+
+2.  Add the client to UAA
+
+    ```
+    uaac client add "fleet-manager"  \
+        --name "Fleet Manager client for Service Instance Manager" \
+        --scope "cloud_controller.read,cloud_controller.write,cloud_controller.admin_read_only,cloud_controller.global_auditor" \
+        --authorized_grant_types "implicit" \
+        --redirect_uri "http://${SIM_ROUTE}/**,https://${SIM_ROUTE}/**" \
+        --autoapprove "true" \
+        --secret ""
+    ```
+
+    Where `SIM_ROUTE` is the route where the Service Instance Manager app is deployed on the host Cloud Foundry.
+    This can be found using the CF CLI:
+
+    ```
+    cf app service-instance-manager
+    export SIM_ROUTE="$(cf app service-instance-manager | grep routes | awk '{ print $2 }')"
+    ```
+    Note that `SIM_ROUTE` will be the same for every client in each target Cloud Foundry. redirect_uri is used by UAA to confirm that the request for authentication is coming from a known location.
+
+
+### Troubleshooting
+
+1. <strong>Build pack unavailable</strong>:
+   During deployment of SIM, the <code>cf push</code> command may show the following error:
+   ```
+   Failed to clone git repository at https://github.com/cloudfoundry/nodejs-buildpack.git
+   ```
+   This suggests that the host CF cannot retrieve the buildpack from github.com. This can be remedied by manually retrieving the buildpack from Github or <a href="https://network.pivotal.io/products/nodejs-buildpack/#/releases/384127">network.pivotal.io</a>. Buildpacks are installed into Cloud Foundry with the <code>cf create-buildpack</code> command.
