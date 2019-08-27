@@ -5,7 +5,7 @@ owner: Fleet Management
 
 <strong><%= modified_date %></strong>
 
-This topic provides instructions for operators about how to install and configure
+This topic provides instructions for operators for how to install and configure
 Service Instance Manager.
 
 
@@ -13,12 +13,12 @@ Service Instance Manager.
 
 Service Instance Manager is installed as two Cloud Foundry apps. <%# What does a "Cloud Foundry application" mean? can this be worded differently? %>
 These are deployed on a single host foundation, and must share the same route.
-<%# we replaced occurrences of "Cloud Foundry" with "foundation" - is that correct? %>
+<%# we replaced most instances of "Cloud Foundry" with "foundation" -- is that correct? %>
 
 The apps are:
 
 * <code>service-instance-manager-api</code>, which communicates with the Cloud Controller of all target foundations.
-* <code>service-instance-manager</code>, which hosts the web GUI.
+* <code>service-instance-manager</code>, which hosts the web UI.
 
 To install and configure Service Instance Manager:
 
@@ -31,11 +31,11 @@ To install and configure Service Instance Manager:
 
 Before you install and configure Service Instance Manager, you must have:
 
-1. The cf CLI. For how to install, see <a href="https://docs.cloudfoundry.org/cf-cli/install-go-cli.html">Installing the cf CLI</a>
-in the Cloud Foundry documentation. <%# can we link to the Pivotal topic instead https://docs.pivotal.io/pivotalcf/cf-cli/install-go-cli.html %>
+1. The cf CLI. For how to install it, see <a href="https://docs.cloudfoundry.org/cf-cli/install-go-cli.html">Installing the cf CLI</a>
+in the Cloud Foundry documentation. <%# can we link to the Pivotal topic instead? https://docs.pivotal.io/pivotalcf/cf-cli/install-go-cli.html %>
 
 2. The User Account and Authentication Command Line Interface (UAAC).
-For how to install, see <a href="https://github.com/cloudfoundry/cf-uaac">cf-uaac</a> on GitHub.
+For how to install it, see <a href="https://github.com/cloudfoundry/cf-uaac">cf-uaac</a> on GitHub.
 
 
 ## <a id='download'></a> Download Service Instance Manager
@@ -49,7 +49,7 @@ two apps? do you have to unpack/unzip anything? should this be downloaded to a s
 ## <a id='api'></a> Configure the API <%# is this configuring the API app? %>
 
 Modify <code>config.json</code> to include a section for each target foundation.
-<%# where do users the config.json? %>
+<%# how do users find the config.json? %>
 Include the properties in the table below in each section:
 
 <table>
@@ -61,7 +61,7 @@ Include the properties in the table below in each section:
   </tr>
   <tr>
     <td><code>name</code></td>
-    <td>A human readable name for the target foundation.</td>
+    <td>A human-readable name for the target foundation.</td>
   </tr>
   <tr>
     <td><code>cfApi</code></td>
@@ -71,10 +71,10 @@ Include the properties in the table below in each section:
     <td>(Optional)<br><code>clientID</code></td>
     <td>
       The <code>client_id</code> in the UAA of the target foundation.
-      You will create this client in <a href="#create-client">Create a UAA Client</a> below.
+      You create this client in <a href="#create-client">Create a UAA Client</a> below.
       Defaults to <code>fleet-manager</code>.
       <%# what is the benefit of adding this? is this if you want a different client name?
-      can you set the client ID in the create a uaa client section below %>
+      can you set the client ID in the create a UAA client section below %>
     </td>
   </tr>
   <tr>
@@ -117,32 +117,30 @@ by running:
     cf target -o HOST-ORG -s HOST-SPACE
     ```
 
-1. Execute <code>install.sh</code> to push the API and web apps. <%# is this the install script? %>
+1. Execute <code>install.sh</code> to push the API and web apps. <%# is this the installation script? %>
 This passes the <code>config.json</code> to the API app.
-<%# do you need to be in a specific dirctory to run this command? %>
+<%# do you need to be in a specific directory to run this command? %>
 
     ```
     ./install.sh
     ```
-<%# do you have to run the cf push command? or is this included in the install script? %>
+<%# do you have to run the cf push command? or is this included in the installation script? %>
 
 <%# Clarify the paragraphs below. Are they instructions or just additional info? %>
-To push service-instance-manager-api, CF requires the <code>node_buildpack</code>
+To push `service-instance-manager-api`, CF requires the <code>node_buildpack</code>
 version specified in <code>api/manifest.yml</code> <%# how to do this? %>
 
-The `service-instance-manager-api` app must be able to reach the Cloud Controller
-API for each target foundation.
-Depending on the network setup, extra steps may be required to allow traffic
-from the app to the target foundation.
+The `service-instance-manager-api` app must be able to reach the Cloud Controller API for each target foundation.
+Depending on the network setup, extra steps might be required to allow traffic from the app to the target foundation.
 
-The `service-instance-manager` web app only requires a connection to the
-service-instance-manager-api, and does not connect directly to the target foundations.
+The `service-instance-manager` web app only requires a connection to the `service-instance-manager-api`, and
+does not connect directly to the target foundations.
 The two apps must be pushed with the same route due to browser cross origin access limitations. <%# should this info be next to the step where the apps are pushed? When does the user have to assign the routes for the apps? %>
 The web app expects the API to be available at <code>/api</code>.
 
 
 ## <a id='create-client'></a> Create UAA Clients
-<%# is creating the uaa client part of deploying the apps or is it a separate installation step. %>
+<%# is creating the UAA client part of deploying the apps or is it a separate installation step. %>
 
 Before logging in to Service Instance Manager, you must create a client in the UAA of each target Cloud Foundry.
 This client is used to authenticate on behalf of the user when a user logs in to Service Instance Manager.
@@ -187,7 +185,7 @@ Application Service (PAS) tile in Ops Manager. These are found under
 
 1.  Add the client to UAA by running:
 <%# is the snippet below a mixture of placeholder and realistic example?
-can they copy and paste whole thing or do they need to change things?
+can they copy and paste the whole thing or do they need to change things?
 is this where the client ID "fleet-manager" is set? %>
 
     ```
@@ -212,8 +210,7 @@ This section provides troubleshooting information for the installation process.
 
 #### Symptom
 
-During deployment of Service Instance Manager, the <code>cf push</code> command
-might output the following error:
+During deployment of Service Instance Manager, the <code>cf push</code> command outputs the following error:
 
 <pre class="terminal">
 $ Failed to clone git repository at https://github.com/cloudfoundry/nodejs-buildpack.git
@@ -225,10 +222,10 @@ The host foundation cannot retrieve the NodeJS buildpack from GitHub.
 
 #### Solution
 
-1. Download the buildpack from Github or
+1. Download the buildpack from GitHub or
 <%# Can we remove the GitHub suggestion and only suggest they get the buildpack from pivnet? %>
 Pivotal Network, see <a href="https://network.pivotal.io/products/nodejs-buildpack/#/releases/384127">NodeJS Buildpack</a>.
-<%# should users get the latest version of the buildpack? If yes, say so and make the url less specific. If no, state which version they should get. %>
+<%# should users get the latest version of the buildpack? If yes, say so and make the URL less specific. If no, state which version they should get. %>
 
 1. Install the buildpack by running:
 
