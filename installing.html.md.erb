@@ -11,9 +11,7 @@ Service Instance Manager.
 
 ## <a id='overview'></a> Overview
 
-Service Instance Manager is installed as two Cloud Foundry apps. <%# What does a "Cloud Foundry application" mean? can this be worded differently? %>
-These are deployed on a single host foundation, and must share the same route.
-<%# we replaced most instances of "Cloud Foundry" with "foundation" -- is that correct? %>
+Service Instance Manager consists of two Cloud Foundry apps. These are deployed on a single host Cloud Foundry.
 
 The apps are:
 
@@ -31,8 +29,8 @@ To install and configure Service Instance Manager:
 
 Before you install and configure Service Instance Manager, you must have:
 
-1. The cf CLI. For how to install it, see <a href="https://docs.cloudfoundry.org/cf-cli/install-go-cli.html">Installing the cf CLI</a>
-in the Cloud Foundry documentation. <%# can we link to the Pivotal topic instead? https://docs.pivotal.io/pivotalcf/cf-cli/install-go-cli.html %>
+1. The cf CLI. For how to install it, see <a href="https://docs.pivotal.io/pivotalcf/cf-cli/install-go-cli.html">Installing the cf CLI</a>
+in the Cloud Foundry documentation.
 
 2. The User Account and Authentication Command Line Interface (UAAC).
 For how to install it, see <a href="https://github.com/cloudfoundry/cf-uaac">cf-uaac</a> on GitHub.
@@ -40,16 +38,16 @@ For how to install it, see <a href="https://github.com/cloudfoundry/cf-uaac">cf-
 
 ## <a id='download'></a> Download Service Instance Manager
 
-Download the latest version of Service Instance Manager from
+1. Download the latest version of Service Instance Manager from
 <a href="https://network.pivotal.io/products/service-instance-manager/">Pivotal Network</a>.
-<%# is there anything else we can say about this download? will it contain the
-two apps? do you have to unpack/unzip anything? should this be downloaded to a specific directory? etc. %>
 
+1. Unzip the tarball.
 
-## <a id='api'></a> Configure the API <%# is this configuring the API app? %>
+## <a id='api-app'></a> Configure the API App
 
-Modify <code>config.json</code> to include a section for each target foundation.
-<%# how do users find the config.json? %>
+Modify <code>config.json</code> that you extracted from the tarball in the previous step to include a section
+for each target foundation.
+
 Include the properties in the table below in each section:
 
 <table>
@@ -71,32 +69,52 @@ Include the properties in the table below in each section:
     <td>(Optional)<br><code>clientID</code></td>
     <td>
       The <code>client_id</code> in the UAA of the target foundation.
-      You create this client in <a href="#create-client">Create a UAA Client</a> below.
-      Defaults to <code>fleet-manager</code>.
-      <%# what is the benefit of adding this? is this if you want a different client name?
-      can you set the client ID in the create a UAA client section below %>
+      You can create this client in <a href="#create-client">Create a UAA Client</a> below.
+      If you do not set a custom ID, the ID <code>fleet-manager</code> is used.
     </td>
   </tr>
   <tr>
     <td>(Optional) <code>identityProviderName</code></td>
     <td>
-      The name of the identity provider that you can optionally configure for UAA. <%# Clarify %>
+      The name of the identity provider that you can optionally configure for UAA.
+      If an identity provider is configured, the user need only log in once to use Service Instance Manager.
       See below for instruction to find this name.
-      <%# where are the instructions below? %>
     </td>
   </tr>
 </table>
 
-<%# maybe include an example config.json %>
+### <a id='find-id-provider'></a> Find Your Identity Provider
 
+Pivotal Application Service (PAS) can be configured with an enterprise identity provider. This allows the user to log in to multiple PAS deployments using a single set of credentials.
+See https://docs.pivotal.io/pivotalcf/2-6/opsguide/auth-sso.html for this.
+
+If you use an identity provider to authenticate users with PAS, Service Instance Manager can be configured to use the same identity provider.
+
+The identity provider name is configured in the PAS tile in Ops Manager on each Cloud Foundry.
+Retrieve the identity provider name from the PAS tile: Pivotal Application Platform Tile > Authentication and Enterprise SSO tab > SAML Identity Provider radio > Provider Name.
+
+```json
+{
+  {
+    "name":"My Production PCF Deployment",
+    "cfApi":"sys.prodcf.example.com"
+  },
+  {
+    "name":"Dev PCF Deployment",
+    "cfApi":"dev-systom-domain.example.com",
+    "client_id":"custom-uaa-client-id",
+    "identityProviderName":"my-saml-provider"
+  }
+  // ...
+}
+```
 
 ## <a id='deploying'></a> Deploy the Apps
 
 To install Service Instance Manager you must deploy the apps that you downloaded:
 
-1. Log in to the cf CLI for the foundation on which you want to host Service Instance
+1. Log in to the cf CLI for the Cloud Foundry on which you want to host Service Instance
 Manager by running:
-<%# is the placeholder here correct? %>
 
     ```
     cf api https://api.HOST-CLOUD-FOUNDRY-DOMAIN
@@ -106,7 +124,7 @@ Manager by running:
     For example:
 
     <pre class="terminal">
-    $ cf api https://api.host-cloud-foundry.example.com
+    $ cf api https://api.my-cloud-foundry.example.com
     $ cf auth
     </pre>
 
@@ -117,37 +135,20 @@ by running:
     cf target -o HOST-ORG -s HOST-SPACE
     ```
 
-1. Execute <code>install.sh</code> to push the API and web apps. <%# is this the installation script? %>
+1. Execute the installation script <code>install.sh</code> to push the API and web apps.
 This passes the <code>config.json</code> to the API app.
-<%# do you need to be in a specific directory to run this command? %>
 
     ```
     ./install.sh
     ```
-<%# do you have to run the cf push command? or is this included in the installation script? %>
-
-<%# Clarify the paragraphs below. Are they instructions or just additional info? %>
-To push `service-instance-manager-api`, CF requires the <code>node_buildpack</code>
-version specified in <code>api/manifest.yml</code> <%# how to do this? %>
-
-The `service-instance-manager-api` app must be able to reach the Cloud Controller API for each target foundation.
-Depending on the network setup, extra steps might be required to allow traffic from the app to the target foundation.
-
-The `service-instance-manager` web app only requires a connection to the `service-instance-manager-api`, and
-does not connect directly to the target foundations.
-The two apps must be pushed with the same route due to browser cross origin access limitations. <%# should this info be next to the step where the apps are pushed? When does the user have to assign the routes for the apps? %>
-The web app expects the API to be available at <code>/api</code>.
-
 
 ## <a id='create-client'></a> Create UAA Clients
-<%# is creating the UAA client part of deploying the apps or is it a separate installation step. %>
 
 Before logging in to Service Instance Manager, you must create a client in the UAA of each target Cloud Foundry.
 This client is used to authenticate on behalf of the user when a user logs in to Service Instance Manager.
 This means that Service Instance Manager only has the permissions available to that user on each target foundation.
 
-To create the client in each target foundation:
-<%# do you need to repeat these instructions for each foundation? Make this clearer. %>
+To create the clients in each target foundation, perform the following steps for each foundation:
 
 1. Retrieve the UAA admin credentials for the foundation from the Pivotal
 Application Service (PAS) tile in Ops Manager. These are found under
@@ -169,24 +170,20 @@ Application Service (PAS) tile in Ops Manager. These are found under
     This command prompts for the admin credentials of UAA that you retrieved
     in the previous step.
 
-1. Retrieve the route where the Service Instance Manager app is deployed on the host foundation by running:
-<%# is this route the same as the the route that you push the apps to? %>
+1. Retrieve the route where the Service Instance Manager app is deployed on the host Cloud Foundry by running:
 
     ```
     cf app service-instance-manager
     export SIM-ROUTE="$(cf app service-instance-manager | grep routes | awk '{ print $2 }')"
     ```
     <p class='note'>
-      <strong>Note: </strong> The <code>SIM-ROUTE</code> is the same for every
-      client in each target foundation.
+      <strong>Note:</strong> The <code>SIM-ROUTE</code> is the same for every
+      client in each target foundation. <code>SIM-ROUTE</code> must not contain a hyphen.
       <code>redirect_uri</code> is used by UAA to confirm that the request for
       authentication is coming from a known location.
     </p>
 
 1.  Add the client to UAA by running:
-<%# is the snippet below a mixture of placeholder and realistic example?
-can they copy and paste the whole thing or do they need to change things?
-is this where the client ID "fleet-manager" is set? %>
 
     ```
     uaac client add "fleet-manager"  \
@@ -198,15 +195,16 @@ is this where the client ID "fleet-manager" is set? %>
         --secret ""
     ```
 
-    Where `SIM-ROUTE` is the route where the Service Instance Manager app is
-    deployed on the host foundation that you retrieved in the previous step.
+    Where `SIM-ROUTE` is the route where the Service Instance Manager app is deployed on the host Cloud Foundry that you retrieved in the previous step. `SIM-ROUTE` must not contain a hyphen.
+
+    Service Instance Manager is now accessible at the route it was pushed to.
 
 
-## <a id='create-client'></a> Troubleshooting
+## <a id='ts'></a> Troubleshooting
 
 This section provides troubleshooting information for the installation process.
 
-###<a id='create-client'></a> Buildpack Unavailable
+### <a id='bp-unavailable'></a> Buildpack Unavailable
 
 #### Symptom
 
@@ -218,19 +216,26 @@ $ Failed to clone git repository at https://github.com/cloudfoundry/nodejs-build
 
 #### Explanation
 
-The host foundation cannot retrieve the NodeJS buildpack from GitHub.
+The host Cloud Foundry cannot retrieve the NodeJS buildpack from GitHub.
 
 #### Solution
 
-1. Download the buildpack from GitHub or
-<%# Can we remove the GitHub suggestion and only suggest they get the buildpack from pivnet? %>
-Pivotal Network, see <a href="https://network.pivotal.io/products/nodejs-buildpack/#/releases/384127">NodeJS Buildpack</a>.
-<%# should users get the latest version of the buildpack? If yes, say so and make the URL less specific. If no, state which version they should get. %>
+1. Look up the buildpack version listed in the service-instance-manager/api/manifest.yml.
+1. Download the corresponding buildpack version from
+<a href="https://network.pivotal.io/products/nodejs-buildpack">NodeJS Buildpack</a> or GitHub.
 
 1. Install the buildpack by running:
 
     ```
-    cf create-buildpack BUILDPACK PATH
+    cf create-buildpack BUILDPACK-PATH
     ```
 
-<%# is the placeholder in the command above correct? give an example of the full `cf create-buildpack` command here %>
+### <a id='network-issues'></a> Troubleshooting Networking Issues
+
+* The `service-instance-manager-api` app must be able to reach the Cloud Controller API for each target foundation. Depending on the network setup, extra steps might be required to allow traffic from the app to the target foundation.
+
+* The `service-instance-manager` web app only requires a connection to the `service-instance-manager-api`, and
+does not connect directly to the target foundations.
+
+* The two apps must be pushed with the same route due to browser cross origin access limitations.
+The web app expects the API to be available at <code>/api</code>.
