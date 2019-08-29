@@ -13,16 +13,15 @@ These are release notes for Service Instance Manager.
 
 ## Features
 
-New features and changes in this release:
-
-* Feature one.
-* Feature two.
-* Feature three.
+* First public release of Service Instance Manager
+* View all service instances from across multiple cloud foundries
+* Search for a specific service isntance to speed up troubleshooting
+* Filter service isntances by name, ID, org, space, foundation, and bound apps
+* Filter for service instances that are candidates for cleanup
+* Login with Cloud Foundry credentials
+* Support for enterprise identity providers
 
 ## Known Issues
 
-This release has the following issues:
-
-* Issue one.
-* Issue two.
-* Issue three.
+* When targetting a Cloud Foundry with tens of thousands of service instances, Service Instance Manager can deny service to the cloud controller.
+* When logged in with a user that has audit (read-only) access to a service instance, attempting to delete the service instance will show a JSON error.
