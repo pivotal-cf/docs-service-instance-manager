@@ -5,8 +5,7 @@ owner: Fleet Management
 
 <strong><%= modified_date %></strong>
 
-This topic provides instructions for operators for how to install and configure
-Service Instance Manager.
+This topic provides instructions for operators for how to install and configure Service Instance Manager.
 
 
 ## <a id='overview'></a> Overview
@@ -25,93 +24,82 @@ To install and configure Service Instance Manager:
 1. [Deploy the Apps](#deploying)
 1. [Create a UAA client](#create-client)
 
+
+## <a id='networking'></a> About Networking for Service Instance Manager
+
+Before you begin installation, here are a few things to know about the networking and routing for the Service Instance Manager:
+
+* The `service-instance-manager-api` app must be able to reach the Cloud Controller API for each target
+foundation. Depending on the network setup, extra steps might be required to allow traffic from the app to
+the target foundation.
+
+* The `service-instance-manager` web app only requires a connection to the `service-instance-manager-api`.
+The web app does not connect directly to the target foundations.
+
+* Because of browser cross-origin access, the `service-instance-manager-api` API app and the
+`service-instance-manager-api` web app must be pushed with the same route. The web app expects the API app to
+ be available at `/api`.
+
+
 ## <a id='requirements'></a> Prerequisites
 
 Before you install and configure Service Instance Manager, you must have:
 
-1. The cf CLI. For how to install it, see <a href="https://docs.pivotal.io/pivotalcf/cf-cli/install-go-cli.html">Installing the cf CLI</a>
+1. The cf CLI. For how to install it, see
+<a href="https://docs.pivotal.io/pivotalcf/cf-cli/install-go-cli.html">Installing the cf CLI</a>
 in the Cloud Foundry documentation.
 
-2. The User Account and Authentication Command Line Interface (UAAC).
+1. The User Account and Authentication Command Line Interface (UAAC).
 For how to install it, see <a href="https://github.com/cloudfoundry/cf-uaac">cf-uaac</a> on GitHub.
 
 
 ## <a id='download'></a> Download Service Instance Manager
 
-1. Download the latest version of Service Instance Manager from
+Download the latest version of Service Instance Manager from
 <a href="https://network.pivotal.io/products/service-instance-manager/">Pivotal Network</a>.
-
-1. Unzip the tarball.
 
 ## <a id='api-app'></a> Configure the API App
 
-Modify <code>config.json</code> that you extracted from the tarball in the previous step to include a section
-for each target foundation.
+To configure the API app:
 
-Include the properties in the table below in each section:
+1. Unzip the Service Instance Manager tarball you downloaded.
 
-<table>
-  <col width="30%">
-  <col width="70%">
-  <tr>
-    <th>Property</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td><code>name</code></td>
-    <td>A human-readable name for the target foundation.</td>
-  </tr>
-  <tr>
-    <td><code>cfApi</code></td>
-    <td>The URL of the API endpoint for the target foundation.</td>
-  </tr>
-  <tr>
-    <td>(Optional)<br><code>clientID</code></td>
-    <td>
-      The <code>client_id</code> in the UAA of the target foundation.
-      You can create this client in <a href="#create-client">Create a UAA Client</a> below.
-      If you do not set a custom ID, the ID <code>fleet-manager</code> is used.
-    </td>
-  </tr>
-  <tr>
-    <td>(Optional) <code>identityProviderName</code></td>
-    <td>
-      The name of the identity provider that you can optionally configure for UAA.
-      If an identity provider is configured, the user need only log in once to use Service Instance Manager.
-      See below for instruction to find this name.
-    </td>
-  </tr>
-</table>
+1. Open the <code>config.json</code> file that you just extracted from the tarball in a text editor.
 
-### <a id='find-id-provider'></a> Find Your Identity Provider
-
-Pivotal Application Service (PAS) can be configured with an enterprise identity provider. This allows the user to log in to multiple PAS deployments using a single set of credentials.
-See https://docs.pivotal.io/pivotalcf/2-6/opsguide/auth-sso.html for this.
-
-If you use an identity provider to authenticate users with PAS, Service Instance Manager can be configured to use the same identity provider.
-
-The identity provider name is configured in the PAS tile in Ops Manager on each Cloud Foundry.
-Retrieve the identity provider name from the PAS tile: Pivotal Application Platform Tile > Authentication and Enterprise SSO tab > SAML Identity Provider radio > Provider Name.
+1. Edit <code>config.json</code> to include a section for each target foundation, as in the example below.
 
 ```json
 {
   {
-    "name":"My Production PCF Deployment",
-    "cfApi":"sys.prodcf.example.com"
+    "name":"YOUR-PRODUCTION-PCF-DEPLOYMENT",
+    "cfApi":"SYS.PRODCF.EXAMPLE.COM"
   },
   {
-    "name":"Dev PCF Deployment",
-    "cfApi":"dev-systom-domain.example.com",
-    "client_id":"custom-uaa-client-id",
-    "identityProviderName":"my-saml-provider"
+    "name":"DEV-PCF-DEPLOYMENT",
+    "cfApi":"DEV-SYSTOM-DOMAIN.EXAMPLE.COM",
+    "client_id":"CUSTOM-UAA-CLIENT-ID", // Optional
+    "identityProviderName":"YOUR-SAML-PROVIDER" // Optional
   }
   // ...
 }
 ```
 
+Where:
+<ul>
+  <li><code>YOUR-PRODUCTION-PCF-DEPLOYMENT</code> is a human-readable name for the target foundation.</li>
+  <li><code>SYS.PRODCF.EXAMPLE.COM</code> is the URL of the API endpoint for the target foundation.</li>
+  <li><code>CUSTOM-UAA-CLIENT-ID</code> is the <code>client_id</code> in the UAA of the target foundation.
+    You can create this client by following the steps in <a href="#create-client">Create a UAA Client</a>
+    below. If you do not set a custom ID, the ID <code>fleet-manager</code> is used.</li>
+  <li><code>YOUR-SAML-PROVIDER</code> is the name of the identity provider that you can optionally configure
+    for UAA. If an identity provider is configured, the user need only log in once to use Service Instance
+    Manager. If you do not know the name of your identity provider, follow steps 1–4 of
+    <a href="https://docs.pivotal.io/pivotalcf/opsguide/auth-sso.html#configure-pcf-for-saml">Configure PAS as a Service Provider for SAML</a>.</li>
+</ul>
+
 ## <a id='deploying'></a> Deploy the Apps
 
-To install Service Instance Manager you must deploy the apps that you downloaded:
+To install Service Instance Manager, deploy the apps that you downloaded:
 
 1. Log in to the cf CLI for the Cloud Foundry on which you want to host Service Instance
 Manager by running:
@@ -128,31 +116,33 @@ Manager by running:
     $ cf auth
     </pre>
 
-1. Target the org and space that you want to deploy Service Instance Manager in
-by running:
+1. Target the org and space to deploy Service Instance Manager in by running:
 
     ```
     cf target -o HOST-ORG -s HOST-SPACE
     ```
 
-1. Execute the installation script <code>install.sh</code> to push the API and web apps.
-This passes the <code>config.json</code> to the API app.
+1. Execute the installation script `install.sh` to push the API and web apps by running:
 
     ```
     ./install.sh
     ```
+   This passes the `config.json` to the API app.
+
 
 ## <a id='create-client'></a> Create UAA Clients
 
-Before logging in to Service Instance Manager, you must create a client in the UAA of each target Cloud Foundry.
-This client is used to authenticate on behalf of the user when a user logs in to Service Instance Manager.
-This means that Service Instance Manager only has the permissions available to that user on each target foundation.
+Before logging in to Service Instance Manager, you must create a client in the UAA of each target Cloud
+Foundry. This client is used to authenticate on behalf of the user when a user logs in to Service Instance
+Manager.
+
+This means that Service Instance Manager only has the permissions available to that user on each target
+foundation.
 
 To create the clients in each target foundation, perform the following steps for each foundation:
 
-1. Retrieve the UAA admin credentials for the foundation from the Pivotal
-Application Service (PAS) tile in Ops Manager. These are found under
-**Credentials** &gt; **UAA** &gt; **Admin Client Credentials**.
+1. Retrieve the UAA admin credentials for the foundation from the Pivotal Application Service (PAS) tile in
+Ops Manager. These are found at **Credentials** &gt; **UAA** &gt; **Admin Client Credentials**.
 
 1. Target and authenticate with UAA for the foundation by running:
 
@@ -176,7 +166,7 @@ Application Service (PAS) tile in Ops Manager. These are found under
     cf app service-instance-manager
     export SIM-ROUTE="$(cf app service-instance-manager | grep routes | awk '{ print $2 }')"
     ```
-    <p class='note'>
+    <p class="note">
       <strong>Note:</strong> The <code>SIM-ROUTE</code> is the same for every
       client in each target foundation. <code>SIM-ROUTE</code> must not contain a hyphen.
       <code>redirect_uri</code> is used by UAA to confirm that the request for
@@ -195,9 +185,10 @@ Application Service (PAS) tile in Ops Manager. These are found under
         --secret ""
     ```
 
-    Where `SIM-ROUTE` is the route where the Service Instance Manager app is deployed on the host Cloud Foundry that you retrieved in the previous step. `SIM-ROUTE` must not contain a hyphen.
+    Where `SIM-ROUTE` is the route where the Service Instance Manager app is deployed on the host Cloud
+    Foundry that you retrieved in the previous step. `SIM-ROUTE` must not contain a hyphen.
 
-    Service Instance Manager is now accessible at the route it was pushed to.
+Service Instance Manager is now accessible at the route it was pushed to.
 
 
 ## <a id='ts'></a> Troubleshooting
@@ -229,13 +220,3 @@ The host Cloud Foundry cannot retrieve the NodeJS buildpack from GitHub.
     ```
     cf create-buildpack BUILDPACK-PATH
     ```
-
-### <a id='network-issues'></a> Troubleshooting Networking Issues
-
-* The `service-instance-manager-api` app must be able to reach the Cloud Controller API for each target foundation. Depending on the network setup, extra steps might be required to allow traffic from the app to the target foundation.
-
-* The `service-instance-manager` web app only requires a connection to the `service-instance-manager-api`, and
-does not connect directly to the target foundations.
-
-* The two apps must be pushed with the same route due to browser cross origin access limitations.
-The web app expects the API to be available at <code>/api</code>.
