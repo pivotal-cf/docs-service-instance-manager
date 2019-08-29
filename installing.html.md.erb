@@ -21,7 +21,7 @@ The apps are:
 To install and configure Service Instance Manager:
 
 1. [Download Service Instance Manager](#download)
-1. [Configure the API](#api)
+1. [Configure the API app](#api)
 1. [Deploy the Apps](#deploying)
 1. [Create a UAA client](#create-client)
 
@@ -83,16 +83,6 @@ Include the properties in the table below in each section:
   </tr>
 </table>
 
-### <a id='find-id-provider'></a> Find Your Identity Provider
-
-Pivotal Application Service (PAS) can be configured with an enterprise identity provider. This allows the user to log in to multiple PAS deployments using a single set of credentials.
-See https://docs.pivotal.io/pivotalcf/2-6/opsguide/auth-sso.html for this.
-
-If you use an identity provider to authenticate users with PAS, Service Instance Manager can be configured to use the same identity provider.
-
-The identity provider name is configured in the PAS tile in Ops Manager on each Cloud Foundry.
-Retrieve the identity provider name from the PAS tile: Pivotal Application Platform Tile > Authentication and Enterprise SSO tab > SAML Identity Provider radio > Provider Name.
-
 ```json
 {
   {
@@ -108,6 +98,16 @@ Retrieve the identity provider name from the PAS tile: Pivotal Application Platf
   // ...
 }
 ```
+
+### <a id='find-id-provider'></a> Find Your Identity Provider
+
+Pivotal Application Service (PAS) can be configured with an enterprise identity provider. This allows the user to log in to multiple PAS deployments using a single set of credentials.
+See https://docs.pivotal.io/pivotalcf/2-6/opsguide/auth-sso.html for this.
+
+If you use an identity provider to authenticate users with PAS, Service Instance Manager can be configured to use the same identity provider.
+
+The identity provider name is configured in the PAS tile in Ops Manager on each Cloud Foundry.
+Retrieve the identity provider name from the PAS tile: Pivotal Application Platform Tile > Authentication and Enterprise SSO tab > SAML Identity Provider radio > Provider Name.
 
 ## <a id='deploying'></a> Deploy the Apps
 
@@ -200,6 +200,18 @@ Application Service (PAS) tile in Ops Manager. These are found under
     Service Instance Manager is now accessible at the route it was pushed to.
 
 
+## <a id='networking'></a> About Networking for Service Instance Manager
+
+Here are a few things to know about the networking and routing for the Service Instance Manager:
+* The `service-instance-manager-api` app must be able to reach the Cloud Controller API for each target foundation. Depending on the network setup, extra steps might be required to allow traffic from the app to the target foundation.
+
+* The `service-instance-manager` web app only requires a connection to the `service-instance-manager-api`, and
+does not connect directly to the target foundations.
+
+* The two apps must be pushed with the same route due to browser cross origin access limitations.
+The web app expects the API to be available at <code>/api</code>.
+
+
 ## <a id='ts'></a> Troubleshooting
 
 This section provides troubleshooting information for the installation process.
@@ -229,13 +241,3 @@ The host Cloud Foundry cannot retrieve the NodeJS buildpack from GitHub.
     ```
     cf create-buildpack BUILDPACK-PATH
     ```
-
-### <a id='network-issues'></a> Troubleshooting Networking Issues
-
-* The `service-instance-manager-api` app must be able to reach the Cloud Controller API for each target foundation. Depending on the network setup, extra steps might be required to allow traffic from the app to the target foundation.
-
-* The `service-instance-manager` web app only requires a connection to the `service-instance-manager-api`, and
-does not connect directly to the target foundations.
-
-* The two apps must be pushed with the same route due to browser cross origin access limitations.
-The web app expects the API to be available at <code>/api</code>.
