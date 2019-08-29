@@ -7,21 +7,25 @@ owner: Fleet Management
 
 These are release notes for Service Instance Manager.
 
-##<a id="ver"></a> v0.3.0
+##<a id="0-3-0"></a> v0.3.0
 
 **Release Date:** August DD, 2019
 
 ## Features
 
+New features and changes in this release:
+
 * First public release of Service Instance Manager
 * View all service instances from across multiple cloud foundries
-* Search for a specific service isntance to speed up troubleshooting
-* Filter service isntances by name, ID, org, space, foundation, and bound apps
+* Search for a specific service instance to speed up troubleshooting
+* Filter service instances by name, ID, org, space, foundation, and bound apps
 * Filter for service instances that are candidates for cleanup
-* Login with Cloud Foundry credentials
+* Log in with Cloud Foundry credentials
 * Support for enterprise identity providers
 
 ## Known Issues
 
-* When targetting a Cloud Foundry with tens of thousands of service instances, Service Instance Manager can deny service to the cloud controller.
-* When logged in with a user that has audit (read-only) access to a service instance, attempting to delete the service instance will show a JSON error.
+This release has the following issues:
+
+* When targeting a Cloud Foundry with tens of thousands of service instances, Service Instance Manager can deny service to the Cloud Controller.
+* When logged in with a user that has audit (read-only) access to a service instance, attempting to delete the service instance triggers a JSON error message.
