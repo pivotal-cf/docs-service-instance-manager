@@ -20,7 +20,7 @@ The apps are:
 To install and configure Service Instance Manager:
 
 1. [Download Service Instance Manager](#download)
-1. [Configure the API](#api)
+1. [Configure the API app](#api)
 1. [Deploy the Apps](#deploying)
 1. [Create a UAA client](#create-client)
 
@@ -189,6 +189,18 @@ Ops Manager. These are found at **Credentials** &gt; **UAA** &gt; **Admin Client
     Foundry that you retrieved in the previous step. `SIM-ROUTE` must not contain a hyphen.
 
 Service Instance Manager is now accessible at the route it was pushed to.
+
+
+## <a id='networking'></a> About Networking for Service Instance Manager
+
+Here are a few things to know about the networking and routing for the Service Instance Manager:
+* The `service-instance-manager-api` app must be able to reach the Cloud Controller API for each target foundation. Depending on the network setup, extra steps might be required to allow traffic from the app to the target foundation.
+
+* The `service-instance-manager` web app only requires a connection to the `service-instance-manager-api`, and
+does not connect directly to the target foundations.
+
+* The two apps must be pushed with the same route due to browser cross origin access limitations.
+The web app expects the API to be available at <code>/api</code>.
 
 
 ## <a id='ts'></a> Troubleshooting
