@@ -6,7 +6,7 @@ https://github.com/pivotal-cf/docs-book-sim
 The book repo uses these branches:
 
 * **Edge** builds from the **master** content branch in this repo.
-[//]: # (Pipeline [here]().)
+Pipeline [here]().
 * **Master** builds from the published content branches in this repo. Pipeline [here](https://concourse.run.pivotal.io/teams/cf-docs/pipelines/cf-services?group=sim).
 
 ## Branches in this (content) repo
@@ -40,8 +40,8 @@ We need to decide on product name short forms:
 
 ## Pipelines
 
-[//]: # (**Edge Pipeline**<br>
-The `master` branch builds to the <br> <strong>cf-services-edge > sim-edge</strong> pipeline, and does not go to production until release time: [Edge pipeline](). <br>)
+**Edge Pipeline**<br>
+The `master` branch builds to the <br> <strong>cf-services-edge > sim-edge</strong> pipeline, and does not go to production until release time: [Edge pipeline](). <br>
 
 **Production Pipeline**<br>
 All live branches build to the <strong>cf-services > sim</strong> pipeline,
