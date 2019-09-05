@@ -6,7 +6,7 @@ https://github.com/pivotal-cf/docs-book-sim
 The book repo uses these branches:
 
 * **Edge** builds from the **master** content branch in this repo. Pipeline [here]().
-* **Master** builds from the published content branches in this repo. Pipeline [here]().
+* **Master** builds from the published content branches in this repo. Pipeline [here](https://concourse.run.pivotal.io/teams/cf-docs/pipelines/cf-services?group=sim).
 
 ## Branches in this (content) repo
 
@@ -21,6 +21,8 @@ Always make changes you want carried forward in the master branch. This includes
 * Doc reorganization or enhancement
 
 ### Live Branches In Production (Public)
+
+* **0.3**: Live docs at staging (https://docs-pcf-staging.cfapps.io/service-instance-manager/0-3/) and production (https://docs.pivotal.io/service-instance-manager/0-3/)
 
 ### Cherry picking to and from MASTER
 
