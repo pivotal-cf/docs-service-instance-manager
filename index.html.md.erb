@@ -1,27 +1,27 @@
 ---
-title: Service Instance Manager for PCF (Beta)
+title: Pivotal Service Instance Manager (Beta)
 owner: Fleet Management
 ---
 
 <strong><%= modified_date %></strong>
 
-<p class="note warning"><strong>Warning:</strong> Service Instance Manager for PCF is currently in beta and and might not receive long-term support.
+<p class="note warning"><strong>Warning:</strong> <%= product_full %> is currently in beta and and might not receive long-term support.
 </p>
 
-This documentation describes the Service Instance Manager for Pivotal Cloud Foundry (PCF).
-Service Instance Manager enables operators to more easily manage large numbers of service instances.
+This documentation describes the <%= product_full %>.
+<%= product_short %> enables operators to more easily manage large numbers of service instances.
 
 
 ## <a id="overview"></a>Overview
 
-Service Instance Manager gathers information about service instances from multiple cloud foundries
+<%= product_short %> gathers information about service instances from multiple cloud foundries
 through the CF API and presents this information in a web UI.
 From here, operators can view, filter, and delete service instances.
 
 
 ## <a id="features"></a>Key Features
 
-Through Service Instance Manager, operators can:
+Through <%= product_short %>, operators can:
 
 * View and filter service instances by foundation, org, space, service offering, status,
   service keys, service bindings, and bound apps
@@ -30,7 +30,7 @@ Through Service Instance Manager, operators can:
 
 ## <a id="snapshot"></a>Product Snapshot
 
-The following table provides version and version-support information about Service Instance Manager.
+The following table provides version and version-support information about <%= product_short %>.
 
 <table class="nice">
     <th>Element</th>
@@ -60,14 +60,14 @@ The following table provides version and version-support information about Servi
 
 ## <a id="reqs"></a>Requirements
 
-Service Instance Manager has the following requirements:
+<%= product_short %> has the following requirements:
 
 * PCF
 * [User Account and Authentication (UAA) server](https://docs.pivotal.io/pivotalcf/uaa/uaa-overview.html)
 
 ## <a id="limitations"></a>Limitations
 
-Service Instance Manager has been tested with 2000 Cloud Foundry service instances across two Cloud Foundries.
+<%= product_short %> has been tested with 2000 Cloud Foundry service instances across two Cloud Foundries.
 Higher numbers might impact the performance of Cloud Foundry due to the large number of requests made to the Cloud Controller.
 
 ## <a id="feedback"></a>Feedback
