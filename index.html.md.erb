@@ -5,23 +5,27 @@ owner: Fleet Management
 
 <strong><%= modified_date %></strong>
 
-<p class="note warning"><strong>Warning:</strong> <%= product_full %> is currently in beta and and might not receive long-term support.
+<%= partial '../../sim/partials/branding-change' %>
+
+<%= partial '../../sim/partials/pcf-name-change' %>
+
+<p class="note warning"><strong>Warning:</strong> <%= vars.product_full %> is currently in beta and and might not receive long-term support.
 </p>
 
-This documentation describes the <%= product_full %>.
-<%= product_short %> enables operators to more easily manage large numbers of service instances.
+This documentation describes the <%= vars.product_full %>.
+<%= vars.product_short %> enables operators to more easily manage large numbers of service instances.
 
 
 ## <a id="overview"></a>Overview
 
-<%= product_short %> gathers information about service instances from multiple cloud foundries
+<%= vars.product_short %> gathers information about service instances from multiple cloud foundries
 through the CF API and presents this information in a web UI.
 From here, operators can view, filter, and delete service instances.
 
 
 ## <a id="features"></a>Key Features
 
-Through <%= product_short %>, operators can:
+Through <%= vars.product_short %>, operators can:
 
 * View and filter service instances by foundation, org, space, service offering, status,
   service keys, service bindings, and bound apps
@@ -30,7 +34,7 @@ Through <%= product_short %>, operators can:
 
 ## <a id="snapshot"></a>Product Snapshot
 
-The following table provides version and version-support information about <%= product_short %>.
+The following table provides version and version-support information about <%= vars.product_short %>.
 
 <table class="nice">
     <th>Element</th>
@@ -44,11 +48,11 @@ The following table provides version and version-support information about <%= p
         <td>MMM DD, YYYY</td>
     </tr>
     <tr>
-        <td>Compatible Ops Manager versions</td>
+        <td>Compatible Pivotal Operations Manager versions</td>
         <td>All</td>
     </tr>
     <tr>
-        <td>Compatible Pivotal Application Service (PAS) versions</td>
+        <td>Compatible Pivotal Application Service versions</td>
         <td>All</td>
     </tr>
     <tr>
@@ -60,14 +64,14 @@ The following table provides version and version-support information about <%= p
 
 ## <a id="reqs"></a>Requirements
 
-<%= product_short %> has the following requirements:
+<%= vars.product_short %> has the following requirements:
 
-* <%= platform_name %> (formerly <%= platform_old %>)
+* <%= vars.platform_name %> (formerly <%= vars.platform_old %>)
 * [User Account and Authentication (UAA) server](https://docs.pivotal.io/pivotalcf/uaa/uaa-overview.html)
 
 ## <a id="limitations"></a>Limitations
 
-<%= product_short %> has been tested with 2000  Foundry service instances across two  Foundries.
+<%= vars.product_short %> has been tested with 2000  Foundry service instances across two  Foundries.
 Higher numbers might impact the performance of  Foundry due to the large number of requests made to the  Controller.
 
 ## <a id="feedback"></a>Feedback

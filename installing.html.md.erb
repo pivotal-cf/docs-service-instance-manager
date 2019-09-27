@@ -5,12 +5,12 @@ owner: Fleet Management
 
 <strong><%= modified_date %></strong>
 
-This topic provides instructions for operators for how to install and configure <%= product_full %>.
+This topic provides instructions for operators for how to install and configure <%= vars.product_full %>.
 
 
 ## <a id='overview'></a> Overview
 
-<%= product_short %> consists of two Cloud Foundry apps. These are deployed on a single host Cloud Foundry.
+<%= vars.product_short %> consists of two Cloud Foundry apps. These are deployed on a single host Cloud Foundry.
 
 The apps are:
 
@@ -18,17 +18,17 @@ The apps are:
 * <code>service-instance-manager</code>, which hosts the web UI.
 
 <br>
-To install and configure <%= product_short %>:
+To install and configure <%= vars.product_short %>:
 
-1. [Download <%= product_short %>](#download)
+1. [Download <%= vars.product_short %>](#download)
 1. [Configure the API App](#api-app)
 1. [Deploy the Apps](#deploying)
 1. [Create a UAA client](#create-client)
 
 
-## <a id='networking'></a> About Networking for <%= product_short %>
+## <a id='networking'></a> About Networking for <%= vars.product_short %>
 
-Before you begin installation, here are a few things to know about the networking and routing for the <%= product_short %>:
+Before you begin installation, here are a few things to know about the networking and routing for the <%= vars.product_short %>:
 
 * The `service-instance-manager-api` app must be able to reach the Cloud Controller API for each target
 foundation. Depending on the network setup, extra steps might be required to allow traffic from the app to
@@ -44,7 +44,7 @@ The web app does not connect directly to the target foundations.
 
 ## <a id='requirements'></a> Prerequisites
 
-Before you install and configure <%= product_short %>, you must have:
+Before you install and configure <%= vars.product_short %>, you must have:
 
 1. The cf CLI. For how to install it, see
 <a href="https://docs.pivotal.io/pivotalcf/cf-cli/install-go-cli.html">Installing the cf CLI</a>
@@ -54,16 +54,16 @@ in the Cloud Foundry documentation.
 For how to install it, see <a href="https://github.com/cloudfoundry/cf-uaac">cf-uaac</a> on GitHub.
 
 
-## <a id='download'></a> Download <%= product_short %>
+## <a id='download'></a> Download <%= vars.product_short %>
 
-Download the latest version of <%= product_short %> from
+Download the latest version of <%= vars.product_short %> from
 <a href="https://network.pivotal.io/products/service-instance-manager/">Pivotal Network</a>.
 
 ## <a id='api-app'></a> Configure the API App
 
 To configure the API app:
 
-1. Unzip the <%= product_short %> tarball you downloaded.
+1. Unzip the <%= vars.product_short %> tarball you downloaded.
 
 1. Open the <code>config.json</code> file that you just extracted from the tarball in a text editor.
 
@@ -93,16 +93,16 @@ To configure the API app:
         You can create this client by following the steps in <a href="#create-client">Create a UAA Client</a>
         below. If you do not set a custom ID, the ID <code>fleet-manager</code> is used.</li>
       <li><code>YOUR-SAML-PROVIDER</code> is the name of the identity provider that you can optionally configure
-        for UAA. If an identity provider is configured, the user need only log in once to use <%= product_short %>.
+        for UAA. If an identity provider is configured, the user need only log in once to use <%= vars.product_short %>.
         If you do not know the name of your identity provider, follow steps 1–4 of
-        <a href="https://docs.pivotal.io/pivotalcf/opsguide/auth-sso.html#configure-pcf-for-saml">Configure PAS as a Service Provider for SAML</a>.</li>
+        <a href="https://docs.pivotal.io/pivotalcf/opsguide/auth-sso.html#configure-pcf-for-saml">Configure Pivotal Application Service as a Service Provider for SAML</a>.</li>
     </ul>
 
 ## <a id='deploying'></a> Deploy the Apps
 
-To install <%= product_short %>, deploy the apps that you downloaded:
+To install <%= vars.product_short %>, deploy the apps that you downloaded:
 
-1. Log in to the cf CLI for the Cloud Foundry on which you want to host <%= product_short %> by running:
+1. Log in to the cf CLI for the Cloud Foundry on which you want to host <%= vars.product_short %> by running:
 
     ```
     cf api https://api.HOST-CLOUD-FOUNDRY-DOMAIN
@@ -116,7 +116,7 @@ To install <%= product_short %>, deploy the apps that you downloaded:
     $ cf auth
     </pre>
 
-1. Target the org and space to deploy <%= product_short %> in by running:
+1. Target the org and space to deploy <%= vars.product_short %> in by running:
 
     ```
     cf target -o HOST-ORG -s HOST-SPACE
@@ -132,16 +132,16 @@ To install <%= product_short %>, deploy the apps that you downloaded:
 
 ## <a id='create-client'></a> Create UAA Clients
 
-Before logging in to <%= product_short %>, you must create a client in the UAA of each target Cloud
-Foundry. This client is used to authenticate on behalf of the user when a user logs in to <%= product_short %>.
+Before logging in to <%= vars.product_short %>, you must create a client in the UAA of each target Cloud
+Foundry. This client is used to authenticate on behalf of the user when a user logs in to <%= vars.product_short %>.
 
-This means that <%= product_short %> only has the permissions available to that user on each target
+This means that <%= vars.product_short %> only has the permissions available to that user on each target
 foundation.
 
 To create the clients in each target foundation, perform the following steps for each foundation:
 
-1. Retrieve the UAA admin credentials for the foundation from the Pivotal Application Service (PAS) tile in
-Ops Manager. These are found at **Credentials** &gt; **UAA** &gt; **Admin Client Credentials**.
+1. Retrieve the UAA admin credentials for the foundation from the Pivotal Application Service tile in
+Pivotal Operations Manager. These are found at **Credentials** &gt; **UAA** &gt; **Admin Client Credentials**.
 
 1. Target and authenticate with UAA for the foundation by running:
 
@@ -159,7 +159,7 @@ Ops Manager. These are found at **Credentials** &gt; **UAA** &gt; **Admin Client
     This command prompts for the admin credentials of UAA that you retrieved
     in the previous step.
 
-1. Retrieve the route where the <%= product_short %> app is deployed on the host Cloud Foundry by running:
+1. Retrieve the route where the <%= vars.product_short %> app is deployed on the host Cloud Foundry by running:
 
     ```
     cf app service-instance-manager
@@ -184,10 +184,10 @@ Ops Manager. These are found at **Credentials** &gt; **UAA** &gt; **Admin Client
         --secret ""
     ```
 
-    Where `SIM-ROUTE` is the route where the <%= product_short %> app is deployed on the host Cloud
+    Where `SIM-ROUTE` is the route where the <%= vars.product_short %> app is deployed on the host Cloud
     Foundry that you retrieved in the previous step. `SIM-ROUTE` must not contain a hyphen.
 
-<%= product_short %> is now accessible at the route it was pushed to.
+<%= vars.product_short %> is now accessible at the route it was pushed to.
 
 
 ## <a id='ts'></a> Troubleshooting
@@ -198,7 +198,7 @@ This section provides troubleshooting information for the installation process.
 
 #### Symptom
 
-During deployment of <%= product_short %>, the <code>cf push</code> command outputs the following error:
+During deployment of <%= vars.product_short %>, the <code>cf push</code> command outputs the following error:
 
 <pre class="terminal">
 $ Failed to clone git repository at https://github.com/cloudfoundry/nodejs-buildpack.git

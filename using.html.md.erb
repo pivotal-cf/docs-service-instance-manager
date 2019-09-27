@@ -5,25 +5,25 @@ owner: Fleet Management
 
 <strong><%= modified_date %></strong>
 
-This topic describes how to use <%= product_full %>
-to view and delete service instances across <%= platform_name %> (formerly <%= platform_old %>) foundations.
+This topic describes how to use <%= vars.product_full %>
+to view and delete service instances across <%= vars.platform_name %> (formerly <%= vars.platform_old %>) foundations.
 
-## <a id="login"></a> Log in to <%= product_short %>
+## <a id="login"></a> Log in to <%= vars.product_short %>
 
-Follow the steps below to log in to <%= product_short %>.
+Follow the steps below to log in to <%= vars.product_short %>.
 
 1. Open a web browser and go to
 <code>https<span>:</span>//service-instance-manager.YOUR-PIVOTAL-PLATFORM-FOUNDATION-URL</code>.
 
-1. Log in with the email address and password you use for that <%= platform_name %> foundation.
+1. Log in with the email address and password you use for that <%= vars.platform_name %> foundation.
 
      <%= image_tag("images/cf-login-page.png", :alt => "Cloud Foundry login page") %><br>
-  * If this is the only <%= platform_name %> foundation that <%= product_short %> is configured to target, the <%= product_short %> UI appears.
-  * If <%= product_short %> is configured to target any other <%= platform_name %> foundations, you are redirected to the
+  * If this is the only <%= vars.platform_name %> foundation that <%= vars.product_short %> is configured to target, the <%= vars.product_short %> UI appears.
+  * If <%= vars.product_short %> is configured to target any other <%= vars.platform_name %> foundations, you are redirected to the
       login page for the next foundation listed in `config.json`. Redirects continue until you have logged in
-      to every foundation that <%= product_short %> targets.
+      to every foundation that <%= vars.product_short %> targets.
 
-1. Log in to each <%= platform_name %> foundation until the the <%= product_short %> UI appears.
+1. Log in to each <%= vars.platform_name %> foundation until the the <%= vars.product_short %> UI appears.
 
 ## <a id="filter-instances"></a> Filter Service Instances
 
@@ -96,7 +96,7 @@ You can filter service instances by a variety of properties.
 
 ## <a id="delete-instances"></a> Delete Service Instances
 
-<p class="note"><strong>Note:</strong> <%= product_short %> does not allow you to delete a service instance with service bindings, service keys, or route associations.
+<p class="note"><strong>Note:</strong> <%= vars.product_short %> does not allow you to delete a service instance with service bindings, service keys, or route associations.
 </p>
 
 To delete a service instance:
