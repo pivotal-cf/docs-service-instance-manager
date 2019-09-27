@@ -6,24 +6,24 @@ owner: Fleet Management
 <strong><%= modified_date %></strong>
 
 This topic describes how to use <%= product_full %>
-to view and delete service instances across PCF foundations.
+to view and delete service instances across <%= platform_name %> (formerly <%= platform_old %>) foundations.
 
 ## <a id="login"></a> Log in to <%= product_short %>
 
 Follow the steps below to log in to <%= product_short %>.
 
 1. Open a web browser and go to
-<code>https<span>:</span>//service-instance-manager.YOUR-PCF-FOUNDATION-URL</code>.
+<code>https<span>:</span>//service-instance-manager.YOUR-PIVOTAL-PLATFORM-FOUNDATION-URL</code>.
 
-1. Log in with the email address and password you use for that PCF foundation.
+1. Log in with the email address and password you use for that <%= platform_name %> foundation.
 
      <%= image_tag("images/cf-login-page.png", :alt => "Cloud Foundry login page") %><br>
-  * If this is the only PCF foundation that <%= product_short %> is configured to target, the <%= product_short %> UI appears.
-  * If <%= product_short %> is configured to target any other PCF foundations, you are redirected to the
+  * If this is the only <%= platform_name %> foundation that <%= product_short %> is configured to target, the <%= product_short %> UI appears.
+  * If <%= product_short %> is configured to target any other <%= platform_name %> foundations, you are redirected to the
       login page for the next foundation listed in `config.json`. Redirects continue until you have logged in
       to every foundation that <%= product_short %> targets.
 
-1. Log in to each PCF foundation until the the <%= product_short %> UI appears.
+1. Log in to each <%= platform_name %> foundation until the the <%= product_short %> UI appears.
 
 ## <a id="filter-instances"></a> Filter Service Instances
 
