@@ -1,5 +1,5 @@
 ---
-title: Release Notes for Service Instance Manager
+title: Release Notes for Pivotal Service Instance Manager
 owner: Fleet Management
 ---
 
@@ -17,8 +17,8 @@ owner: Fleet Management
 
 New features and changes in this release:
 
-* First public release of Service Instance Manager
-* View all service instances from across multiple cloud foundries
+* First public release of <%= vars.product_name %>
+* View all service instances from across multiple <%= vars.platform_name %> foundations
 * Search for a specific service instance to speed up troubleshooting
 * Filter service instances by name, ID, org, space, foundation, and bound apps
 * Filter for service instances that are candidates for cleanup
@@ -29,5 +29,5 @@ New features and changes in this release:
 
 This release has the following issues:
 
-* When targeting a Cloud Foundry with tens of thousands of service instances, Service Instance Manager can deny service to the Cloud Controller.
+* When targeting a <%= vars.platform_name %> foundation with tens of thousands of service instances, <%= vars.product_short %> can deny service to the Cloud Controller.
 * When logged in with a user that has audit (read-only) access to a service instance, attempting to delete the service instance triggers a JSON error message.

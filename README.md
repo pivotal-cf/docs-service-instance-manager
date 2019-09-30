@@ -1,4 +1,4 @@
-# Service Instance Manager for Pivotal Cloud Foundry
+# Pivotal Service Instance Manager
 
 ## Where is the book repo?
 https://github.com/pivotal-cf/docs-book-sim
@@ -31,8 +31,7 @@ Always make changes you want carried forward in the master branch. This includes
 ### Style Sheet
 
 We need to decide on product name short forms:
-+ Longest name = **Service Instance Manager for Pivotal Cloud Foundry**
-+ Long name if PCF has already been spelled out on the page = **Service Instance Manager for PCF**
++ Long name = **Pivotal Service Instance Manager**
 + Short name, use on the page after one of the long names has been used = **Service Instance Manager**
 
 ## Pipelines
