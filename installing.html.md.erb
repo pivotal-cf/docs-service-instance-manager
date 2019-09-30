@@ -10,7 +10,8 @@ This topic provides instructions for operators for how to install and configure 
 
 ## <a id='overview'></a> Overview
 
-<%= vars.product_short %> consists of two Cloud Foundry apps. These are deployed on a single host Cloud Foundry.
+<%= vars.product_short %> consists of two <%= vars.platform_name %> apps.
+These are deployed on a single host <%= vars.platform_name %> foundation.
 
 The apps are:
 
@@ -48,7 +49,7 @@ Before you install and configure <%= vars.product_short %>, you must have:
 
 1. The cf CLI. For how to install it, see
 <a href="https://docs.pivotal.io/pivotalcf/cf-cli/install-go-cli.html">Installing the cf CLI</a>
-in the Cloud Foundry documentation.
+in the <%= vars.platform_name %> documentation.
 
 1. The User Account and Authentication Command Line Interface (UAAC).
 For how to install it, see <a href="https://github.com/cloudfoundry/cf-uaac">cf-uaac</a> on GitHub.
@@ -102,7 +103,7 @@ To configure the API app:
 
 To install <%= vars.product_short %>, deploy the apps that you downloaded:
 
-1. Log in to the cf CLI for the Cloud Foundry on which you want to host <%= vars.product_short %> by running:
+1. Log in to the cf CLI for the <%= vars.platform_name %> foundaion on which you want to host <%= vars.product_short %> by running:
 
     ```
     cf api https://api.HOST-CLOUD-FOUNDRY-DOMAIN
@@ -132,15 +133,16 @@ To install <%= vars.product_short %>, deploy the apps that you downloaded:
 
 ## <a id='create-client'></a> Create UAA Clients
 
-Before logging in to <%= vars.product_short %>, you must create a client in the UAA of each target Cloud
-Foundry. This client is used to authenticate on behalf of the user when a user logs in to <%= vars.product_short %>.
+Before logging in to <%= vars.product_short %>, you must create a client in the UAA of each target <%= vars.platform_name %>
+foundation.
+This client is used to authenticate on behalf of the user when a user logs in to <%= vars.product_short %>.
 
 This means that <%= vars.product_short %> only has the permissions available to that user on each target
 foundation.
 
 To create the clients in each target foundation, perform the following steps for each foundation:
 
-1. Retrieve the UAA admin credentials for the foundation from the Pivotal Application Service tile in
+1. Retrieve the UAA admin credentials for the foundation from the <%= vars.app_runtime_full %> tile in
 Pivotal Operations Manager. These are found at **Credentials** &gt; **UAA** &gt; **Admin Client Credentials**.
 
 1. Target and authenticate with UAA for the foundation by running:
@@ -159,7 +161,7 @@ Pivotal Operations Manager. These are found at **Credentials** &gt; **UAA** &gt;
     This command prompts for the admin credentials of UAA that you retrieved
     in the previous step.
 
-1. Retrieve the route where the <%= vars.product_short %> app is deployed on the host Cloud Foundry by running:
+1. Retrieve the route where the <%= vars.product_short %> app is deployed on the host <%= vars.platform_name %> foundation by running:
 
     ```
     cf app service-instance-manager
@@ -184,8 +186,8 @@ Pivotal Operations Manager. These are found at **Credentials** &gt; **UAA** &gt;
         --secret ""
     ```
 
-    Where `SIM-ROUTE` is the route where the <%= vars.product_short %> app is deployed on the host Cloud
-    Foundry that you retrieved in the previous step. `SIM-ROUTE` must not contain a hyphen.
+    Where `SIM-ROUTE` is the route where the <%= vars.product_short %> app is deployed on the host <%= vars.platform_name %>
+    foundation that you retrieved in the previous step. `SIM-ROUTE` must not contain a hyphen.
 
 <%= vars.product_short %> is now accessible at the route it was pushed to.
 
@@ -206,7 +208,7 @@ $ Failed to clone git repository at https://github.com/cloudfoundry/nodejs-build
 
 #### Explanation
 
-The host Cloud Foundry cannot retrieve the NodeJS buildpack from GitHub.
+The host <%= vars.platform_name %> foundation cannot retrieve the NodeJS buildpack from GitHub.
 
 #### Solution
 
