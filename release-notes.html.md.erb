@@ -16,14 +16,16 @@ owner: Fleet Management
 ### Features
 
 New features and changes in this release:
-- Service Instance Manager now shows the age of each service instance, and how long since it was last updated.
-- Added new filters for age - older_than, younger_than
-  - These filters take a duration in the form `older_than:2d` or `younger_than:3w1d`, see the <a href="using.html#filter-instances">using section</a> for more
+- Service Instance Manager now shows the age of each service instance and the
+time since the instance was last updated.
+- Added the filters `older_than` and `younger_than` to enable filtering service instances by age.
+For more information, see <a href="using.html#filter-instances">Filter Service Instances</a>.
 
 ### Known Issues
 
 This release has the following issues:
-- When installing Service Instance Manager using the included `install.sh` script, the UAA command is incorrectly documented. It should read `uaac token client get`.
+- When installing Service Instance Manager using the included `install.sh` script,
+the UAA command is incorrectly documented. It should read `uaac token client get`.
 
 
 ## <a id="view"></a> View Release Notes for Another Version
