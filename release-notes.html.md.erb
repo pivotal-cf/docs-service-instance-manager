@@ -11,7 +11,7 @@ owner: Fleet Management
 
 ##<a id="0-4-0"></a> v0.4.0
 
-**Release Date:** DD MMM YYYY
+**Release Date:** MMM DD, YYYY
 
 ### Features
 
@@ -24,9 +24,11 @@ For more information, see <a href="using.html#filter-instances">Filter Service I
 ### Known Issues
 
 This release has the following issues:
-- When installing Service Instance Manager using the included `install.sh` script,
-the UAA command is incorrectly documented. It should read `uaac token client get`.
 
+- When installing Service Instance Manager using the `install.sh` script,
+the UAA instructions that are printed to the terminal tell users to run `uaac client token get`.
+This is incorrect.
+The correct command is `uaac token client get`.
 
 ## <a id="view"></a> View Release Notes for Another Version
 
