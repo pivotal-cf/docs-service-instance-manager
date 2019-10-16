@@ -197,34 +197,44 @@ Pivotal Operations Manager. These are found at **Credentials** &gt; **UAA** &gt;
 
 This section provides troubleshooting information for the installation process.
 
-### <a id='bp-unavailable'></a> Buildpack Unavailable
+<%= partial vars.path_to_partials + "/troubleshoot-template", locals: {
+        description: 'Buildpack Unavailable',
+        symptom:<<~DESC,
 
-#### Symptom
+          During deployment of Service Instance Manager, the <code>cf push</code> command outputs the following error:
 
-During deployment of <%= vars.product_short %>, the <code>cf push</code> command outputs the following error:
+          <pre class="terminal" width="50">
+          $ Failed to clone git repository at <br>https://github.com/cloudfoundry/nodejs-buildpack.git
+          </pre>
+          DESC
 
-<pre class="terminal">
-$ Failed to clone git repository at https://github.com/cloudfoundry/nodejs-buildpack.git
-</pre>
 
-#### Explanation
+        cause:<<~DESC,
 
-The host <%= vars.platform_name %> foundation cannot retrieve the NodeJS buildpack from GitHub.
+          The host Pivotal Platform foundation cannot retrieve the NodeJS buildpack from GitHub.
+          DESC
 
-#### Solution
+        solution:<<~DESC,
 
-To solve this issue, do the following:
+          To solve this issue, do the following:
 
-1. Look up the buildpack version listed in the `service-instance-manager/api/manifest.yml`.
+            <ol>
+              <li>
+                <p>Look up the buildpack version listed in the <code>service-instance-manager/api/manifest.yml</code>.</p>
+              </li>
+              <li>
+                <p>Download the corresponding buildpack version from <a href="https://network.pivotal.io/products/nodejs-buildpack">NodeJS Buildpack</a> or GitHub.</p>
+              </li>
+              <li>
+                <p>Install the buildpack by running:</p>
+                <pre><code>cf create-buildpack BUILDPACK-PATH</code></pre>
+              </li>
+            </ol>
 
-1. Download the corresponding buildpack version from
-<a href="https://network.pivotal.io/products/nodejs-buildpack">NodeJS Buildpack</a> or GitHub.
 
-1. Install the buildpack by running:
-
-    ```
-    cf create-buildpack BUILDPACK-PATH
-    ```
+            DESC
+}
+%>
 
 ### <a id='cc-unresponsive'></a> The Cloud Controller is Slow to Respond to Requests
 
