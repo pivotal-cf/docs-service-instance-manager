@@ -103,7 +103,8 @@ To configure the API app:
 
 To install <%= vars.product_short %>, deploy the apps that you downloaded:
 
-1. Log in to the cf CLI for the <%= vars.platform_name %> foundaion on which you want to host <%= vars.product_short %> by running:
+1. Log in to the cf CLI for the <%= vars.platform_name %> foundation on which
+you want to host <%= vars.product_short %> by running:
 
     ```
     cf api https://api.HOST-CLOUD-FOUNDRY-DOMAIN
@@ -113,7 +114,7 @@ To install <%= vars.product_short %>, deploy the apps that you downloaded:
     For example:
 
     <pre class="terminal">
-    $ cf api https://api.my-cloud-foundry.example.com
+    $ cf api https<span>:</span>//api.my-cloud-foundry.example.com
     $ cf auth
     </pre>
 
@@ -212,7 +213,10 @@ The host <%= vars.platform_name %> foundation cannot retrieve the NodeJS buildpa
 
 #### Solution
 
+To solve this issue, do the following:
+
 1. Look up the buildpack version listed in the `service-instance-manager/api/manifest.yml`.
+
 1. Download the corresponding buildpack version from
 <a href="https://network.pivotal.io/products/nodejs-buildpack">NodeJS Buildpack</a> or GitHub.
 
@@ -220,4 +224,57 @@ The host <%= vars.platform_name %> foundation cannot retrieve the NodeJS buildpa
 
     ```
     cf create-buildpack BUILDPACK-PATH
+    ```
+
+### <a id='cc-unresponsive'></a> The Cloud Controller is Slow to Respond to Requests
+
+#### Symptom
+
+The Cloud Controller is slow to respond to requests, or does not respond at all.
+
+#### Explanation
+
+When targeting a <%= vars.platform_name %> foundation with tens of thousands of
+service instances, <%= vars.product_short %> can deny service to the Cloud Controller.
+
+#### Solution
+
+To solve this issue, do the following:
+
+1. Stop both Service Instance Manager apps:
+
+  1. Log in to the cf CLI for the <%= vars.platform_name %> foundation on which
+  you hosted <%= vars.product_short %> by running:
+
+        ```
+        cf api https://api.HOST-CLOUD-FOUNDRY-DOMAIN
+        cf auth
+        ```
+
+        For example:
+
+        <pre class="terminal">
+        $ cf api https<span>:</span>//api.my-cloud-foundry.example.com
+        $ cf auth
+        </pre>
+
+  1. Target the org and space that you deployed <%= vars.product_short %> in by running:
+
+        ```
+        cf target -o HOST-ORG -s HOST-SPACE
+        ```
+  1. Stop the apps by running:
+
+        ```
+        cf stop service-instance-manager
+        cf stop service-instance-manager-api
+        ```
+
+1. Remove the section for the foundation that has an unresponsive Cloud Controller
+from the `config.json` that you edited as part of [Configure the API App](#api-app).
+
+1. Run the install script to re-push the apps:
+
+    ```
+    ./install.sh
     ```

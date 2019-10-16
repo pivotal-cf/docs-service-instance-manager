@@ -31,6 +31,12 @@ the UAA instructions that are printed to the terminal tell you to run `uaac clie
 This is incorrect.
 The correct command is `uaac token client get`.
 
+- When targeting a <%= vars.platform_name %> foundation with tens of thousands of
+service instances, <%= vars.product_short %> can deny service to the Cloud Controller.
+This might cause the Cloud Controller to be slow to respond to requests, or not respond at all.
+For how to troubleshoot this issue, see [The Cloud Controller is Slow to Respond to Requests](./installing.html#cc-unresponsive).
+
+
 ## <a id="view"></a> View Release Notes for Another Version
 
 To view the release notes for another product version, select the version from
