@@ -9,32 +9,19 @@ owner: Fleet Management
 
 <%= partial vars.path_to_partials + '/pcf-name-change' %>
 
-##<a id="0-4-0"></a> v0.4.0
+##<a id="0-5-0"></a> v0.5.0
 
-**Release Date:** October 23, 2019
+**Release Date:** MMMM DD, 2019
 
 ### Features
 
 New features and changes in this release:
 
-- <%= vars.product_name %> now shows the age of each service instance and the
-time since the instance was last updated.
-- Added the filters `older_than` and `younger_than` so that you can filter service instances by age.
-For more information, see <a href="using.html#filter-instances">Filter Service Instances</a>.
+<%# Insert features and changes here %>
 
 ### Known Issues
 
-This release has the following issues:
-
-- When installing Service Instance Manager using the `install.sh` script,
-the UAA instructions that are printed to the terminal tell you to run `uaac client token get`.
-This is incorrect.
-The correct command is `uaac token client get`.
-
-- When targeting a <%= vars.platform_name %> foundation with tens of thousands of
-service instances, <%= vars.product_short %> can deny service to the Cloud Controller.
-This might cause the Cloud Controller to be slow to respond to requests, or not respond at all.
-For how to troubleshoot this issue, see [The Cloud Controller is Slow to Respond to Requests](./installing.html#cc-unresponsive).
+<%# Insert known issues here %>
 
 
 ## <a id="view"></a> View Release Notes for Another Version
