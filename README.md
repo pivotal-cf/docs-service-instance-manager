@@ -11,8 +11,6 @@ Pipeline [here](https://concourse.run.pivotal.io/teams/cf-docs/pipelines/cf-serv
 
 ## Branches in this (content) repo
 
-### Master - Use for next unreleased version
-
 All documentation for the next unreleased version of Service Instance Manager is in `master`.
 
 Always make changes you want carried forward in the master branch. This includes:
@@ -21,9 +19,11 @@ Always make changes you want carried forward in the master branch. This includes
 * Doc bug fixes
 * Doc reorganization or enhancement
 
-### Live Branches In Production (Public)
-
-* **0.3**: Live docs at staging (https://docs-pcf-staging.cfapps.io/service-instance-manager/0-3/) and production (https://docs.pivotal.io/service-instance-manager/0-3/)
+| Branch Name| Use for… |
+|------------| ---------|
+| master     | v0.5 (staged here: http://docs-pcf-staging.cfapps.io/service-instance-manager/0-n/) |
+| 0.4        | v0.4 (http://docs.pivotal.io/service-instance-manager/0-4/) |
+| 0.3        | v0.3 (http://docs.pivotal.io/service-instance-manager/0-3/) |
 
 ### Cherry picking to and from MASTER
 
