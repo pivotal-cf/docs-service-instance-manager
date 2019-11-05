@@ -17,10 +17,30 @@ owner: Fleet Management
 
 New features and changes in this release:
 
-- Improved UI to make it easier to browse many service instances - Service instances are now displayed in a table rather than as cards.
-- Service Instance Manager now allows users to delete many instances in two clicks, based on search results.
+- Improved UI to make it easier to browse service instances.
+Service instances are now displayed in a table rather than as cards.
+
+- Users can delete many instances based on search results with two clicks.
+
 - Users can see the current plan of each service instance.
-- Admin users can see the names of up to five SpaceManagers of the space a service is located in.
+
+- Admin users can see the names of up to five Space Managers of the space that a service is located in.
+
+### Resolved Issues
+
+This release has the following fix:
+
+- When installing Service Instance Manager using the `install.sh` script,
+the UAA instructions that are printed to the terminal no longer tell you to run an incorrect command.
+
+### Known Issues
+
+This release has the following issues:
+
+* When targeting a <%= vars.platform_name %> foundation with tens of thousands of
+service instances, <%= vars.product_short %> can deny service to the Cloud Controller.
+This might cause the Cloud Controller to be slow to respond to requests, or not respond at all.
+For how to troubleshoot this issue, see [The Cloud Controller is Slow to Respond to Requests](./installing.html#cc-unresponsive).
 
 ## <a id="view"></a> View Release Notes for Another Version
 
