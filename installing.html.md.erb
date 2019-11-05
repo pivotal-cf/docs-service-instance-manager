@@ -236,55 +236,57 @@ This section provides troubleshooting information for the installation process.
 }
 %>
 
-### <a id='cc-unresponsive'></a> The Cloud Controller is Slow to Respond to Requests
 
-#### Symptom
+<%= partial vars.path_to_partials + "/troubleshoot-template", locals: {
 
-The Cloud Controller is slow to respond to requests, or does not respond at all.
+    id: 'cc-unresponsive',
 
-#### Explanation
+    description: 'The Cloud Controller is Slow to Respond to Requests',
 
-When targeting a <%= vars.platform_name %> foundation with tens of thousands of
-service instances, <%= vars.product_short %> can deny service to the Cloud Controller.
+    symptom: 'The Cloud Controller is slow to respond to requests, or does not respond at all.',
 
-#### Solution
+    cause: 'When targeting a Pivotal Platform foundation with tens of thousands of service instances, Service Instance Manager can deny service to the Cloud Controller.',
 
-To solve this issue, do the following:
+    solution:<<~DESC,
 
-1. Stop both Service Instance Manager apps:
+    To solve this issue, do the following:
 
-  1. Log in to the cf CLI for the <%= vars.platform_name %> foundation on which
-  you hosted <%= vars.product_short %> by running:
+    1. Stop both Service Instance Manager apps:
+
+      1. Log in to the cf CLI for the Pivotal Platform foundation on which
+      you hosted Service Instance Manager by running:
+
+            ```
+            cf api https://api.HOST-CLOUD-FOUNDRY-DOMAIN
+            cf auth
+            ```
+
+            For example:
+
+            <pre class="terminal">
+            $ cf api https<span>:</span>//api.my-cloud-foundry.example.com
+            $ cf auth
+            </pre>
+
+      1. Target the org and space that you deployed Service Instance Manager in by running:
+
+            ```
+            cf target -o HOST-ORG -s HOST-SPACE
+            ```
+      1. Stop the apps by running:
+
+            ```
+            cf stop service-instance-manager
+            cf stop service-instance-manager-api
+            ```
+
+    1. Remove the section for the foundation that has an unresponsive Cloud Controller
+    from the `config.json` that you edited as part of [Configure the API App](#api-app).
+
+    1. Run the install script to re-push the apps:
 
         ```
-        cf api https://api.HOST-CLOUD-FOUNDRY-DOMAIN
-        cf auth
+        ./install.sh
         ```
-
-        For example:
-
-        <pre class="terminal">
-        $ cf api https<span>:</span>//api.my-cloud-foundry.example.com
-        $ cf auth
-        </pre>
-
-  1. Target the org and space that you deployed <%= vars.product_short %> in by running:
-
-        ```
-        cf target -o HOST-ORG -s HOST-SPACE
-        ```
-  1. Stop the apps by running:
-
-        ```
-        cf stop service-instance-manager
-        cf stop service-instance-manager-api
-        ```
-
-1. Remove the section for the foundation that has an unresponsive Cloud Controller
-from the `config.json` that you edited as part of [Configure the API App](#api-app).
-
-1. Run the install script to re-push the apps:
-
-    ```
-    ./install.sh
-    ```
+    DESC
+} %>
