@@ -13,14 +13,24 @@ owner: Fleet Management
 
 **Release Date:** October 23, 2019
 
+
 ### Features
 
 New features and changes in this release:
 
-- <%= vars.product_full %> now shows the age of each service instance and the
+- <%= vars.product_name %> now shows the age of each service instance and the
 time since the instance was last updated.
 - Added the filters `older_than` and `younger_than` so that you can filter service instances by age.
 For more information, see <a href="using.html#filter-instances">Filter Service Instances</a>.
+
+
+### Resolved Issues
+
+This release has the following fix:
+
+* When logged in with a user that has audit (read-only) access to a service instance,
+attempting to delete the service instance no longer triggers a JSON error message.
+
 
 ### Known Issues
 
