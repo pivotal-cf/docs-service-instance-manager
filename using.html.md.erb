@@ -33,65 +33,144 @@ You can filter service instances by a variety of properties.
 
     <%= image_tag("images/search-by-name.png", :alt => "A name in the search field") %>
 
-* To filter by a category, enter the query in the search field in the format `FILTER:VALUE`.<br><br>
+* To filter by a category, enter the query in the search field in the format
+`FILTER:VALUE`, or filter by clicking on a filter bubble below the search field.<br><br>
 
     <%= image_tag("images/filter-by-status.png", :alt => "Status filter in the search field") %>
 
-    The available filters and examples of each are shown in the table below.
+    The available filters and tags are shown in the table below.
 
     <table>
         <thead>
         <tr>
-        <th width="50%"><strong>Filter</strong></th>
-        <th><strong>Example</strong></th>
+        <th width="35%"><strong>Searching by...</strong></th>
+        <th width="25%"><strong>Type or Click</strong></th>
+        <th><strong>Filters for instances that...</strong></th>
         </tr>
         </thead>
         <tbody>
         <tr>
         <td><code>app:BOUND-APP-NAME</code></td>
-        <td><code>app:go-app-45</code></td>
+        <td>Either type the filter or click the tag</td>
+        <td>Have the specific app bound to them.<br>
+          For example: <code>app:go-app-45</code></td>
         </tr>
         <tr>
         <td><code>foundation:FOUNDATION-NAME</code></td>
-        <td><code>foundation:Bluemonday</code></td>
+        <td>Either type the filter or click the tag</td>
+        <td>Are in a specific foundation.<br>
+          For example: <code>foundation:Bluemonday</code></td>
         </tr>
         <tr>
         <td><code>org:ORG-NAME</code></td>
-        <td><code>org:acceptance</code></td>
+        <td>Either type the filter or click the tag</td>
+        <td>Are in a specific org.<br>
+          For example: <code>org:acceptance</code></td>
         </tr>
         <tr>
-        <td><code>space:SPACE-NAME</code></td>
-        <td><code>space:acceptance</code></td>
+        <td><br><code>space:SPACE-NAME</code></td>
+        <td>Either type the filter or click the tag</td>
+        <td>Are in a specific space.<br>
+          For example: <code>space:acceptance</code></td>
         </tr>
         <tr>
         <td><code>service:SERVICE-OFFERING-NAME</code></td>
-        <td><code>service:p-redis</code></td>
+        <td>Either type the filter or click the tag</td>
+        <td>Are of a specific service offering.<br>
+          For example: <code>service:p-redis</code></td>
         </tr>
         <tr>
-        <td><code>status:ok</code> and <code>status:error</code></td>
-        <td style="text-align:center"><em>n/a</em></td>
+        <td><code>status:ok</code></td>
+        <td>Type the filter</td>
+        <td>The last operation succeeded.</td>
         </tr>
         <tr>
-        <td><code>keys:true</code> and <code>keys:false</code></td>
-        <td style="text-align:center"><em>n/a</em></td>
+        <td><code>status:error</code></td>
+        <td>Type the filter</td>
+        <td>The last operation failed. The status of these instances can be one of:
+          <ul>
+            <li><code>create failed</code></li>
+            <li><code>delete failed</code></li>
+            <li><code>update failed</code></li>
+          </ul>
+        </td>
         </tr>
         <tr>
-        <td><code>bindings:true</code> and <code>bindings:false</code></td>
-        <td style="text-align:center"><em>n/a</em></td>
+        <td><code>failing</code</td>
+        <td>Click the tag</td>
+        <td>The last operation failed. The status of these instances can be one of:
+          <ul>
+            <li><code>create failed</code></li>
+            <li><code>delete failed</code></li>
+            <li><code>update failed</code></li>
+          </ul>
+        </td>
         </tr>
         <tr>
-        <td><code>younger_than:</code> and <code>older_than:</code></td>
-        <td><code>younger_than:4y2m</code>, <code>older_than:2w6d</code><br>
-        Filter by y (years), m (months), w (weeks), and d (days).</td>
+        <td><code>keys:true</code></td>
+        <td>Type the filter</td>
+        <td>Have service keys.</td>
+        </tr>
+        <tr>
+        <tr>
+        <td><code>keys:false</code></td>
+        <td>Type the filter</td>
+        <td>Do not have service keys.</td>
+        </tr>
+        <tr>
+        <td><code>bindings:true</code></td>
+        <td>Type the filter</td>
+        <td>Are bound to apps.</td>
+        </tr>
+        <tr>
+        <td><code>bindings:false</code></td>
+        <td>Type the filter</td>
+        <td>Are not bound to apps.</td>
+        </tr>
+        <tr>
+        <td><code>unbound</code></td>
+        <td>Click the tag</td>
+        <td>Do not have service keys and are not bound to apps.</td>
+        </tr>
+        <tr>
+        <tr>
+        <td><code>younger_than:</code></td>
+        <td>Type the filter</td>
+        <td>Were created before a specific time.
+          You can filter by:
+          <ul>
+            <li>Years: <code>y</code></li>
+            <li>Months: <code>m</code></li>
+            <li>Weeks: <code>w</code></li>
+            <li>Days: <code>d</code></li>
+          </ul>
+          For example: <code>younger_than:4y2m</code>
+        </td>
+        </tr>
+        <tr>
+        <td><code>older_than:</code></td>
+        <td>Type the filter</td>
+        <td>Were created after a specific time.
+          You can filter by:
+          <ul>
+            <li>Years: <code>y</code></li>
+            <li>Months: <code>m</code></li>
+            <li>Weeks: <code>w</code></li>
+            <li>Days: <code>d</code></li>
+          </ul>
+          For example: <code>older_than:2w6d</code>
+        </td>
         </tr>
         </tbody>
     </table>
+    <br>
+
+    You also can combine the above filters to further narrow your search.
 
     <p class="note"><strong>Note:</strong> <code>status</code>, <code>keys</code>, and <code>bindings</code>
-      can only be used with the values shown in the <strong>Filter</strong> column.
+      can only be used with the values shown in the <strong>Searching by…</strong> column.
     </p>
 
-* You can also filter by clicking on a filter bubble below the search field.
 
 
 ## <a id="delete-instances"></a> Delete Service Instances
