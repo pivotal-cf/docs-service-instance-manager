@@ -7,40 +7,24 @@ owner: Fleet Management
 
 <%= partial vars.path_to_partials + '/pcf-name-change' %>
 
-##<a id="0-5-0"></a> v0.5.0
+##<a id="0-6-0"></a> v0.6.0
 
-**Release Date:** November 7, 2019
+**Release Date:** MMM DD, YYYY
 
 ### Features
 
 New features and changes in this release:
 
-- Improved UI to make it easier to browse service instances.
-Service instances are now displayed in a table rather than as cards.
-
-- Users can delete multiple instances based on search or filter with two clicks.
-For instructions, see [Delete Service Instances](./using.html#delete-instances).
-
-- Users can see the current plan of each service instance.
-
-- Admin users can see the names of up to five Space Managers of the space that a
-service is located in.
 
 ### Resolved Issues
 
 This release has the following fix:
 
-- When installing Service Instance Manager using the `install.sh` script,
-the UAA instructions that are printed to the terminal no longer tell you to run an incorrect command.
 
 ### Known Issues
 
 This release has the following issues:
 
-* When targeting a <%= vars.platform_name %> foundation with tens of thousands of
-service instances, <%= vars.product_short %> can deny service to the Cloud Controller.
-This might cause the Cloud Controller to be slow to respond to requests, or not respond at all.
-For how to troubleshoot this issue, see [The Cloud Controller is Slow to Respond to Requests](./installing.html#cc-unresponsive).
 
 ## <a id="view"></a> View Release Notes for Another Version
 
