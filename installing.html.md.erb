@@ -166,11 +166,12 @@ Pivotal Operations Manager. These are found at **Credentials** &gt; **UAA** &gt;
 
     ```
     cf app service-instance-manager
-    export SIM-ROUTE="$(cf app service-instance-manager | grep routes | awk '{ print $2 }')"
+    export SIM_ROUTE="$(cf app service-instance-manager | grep routes | awk '{ print $2 }')"
     ```
     <p class="note">
-      <strong>Note:</strong> The <code>SIM-ROUTE</code> is the same for every
-      client in each target foundation. <code>SIM-ROUTE</code> must not contain a hyphen.
+      <strong>Note:</strong> The variable <code>SIM_ROUTE</code> is the route where the
+      <%= vars.product_short %> app is deployed on the host <%= vars.platform_name %>
+      foundation. It is the same for every client in each target foundation.<br>
       <code>redirect_uri</code> is used by UAA to confirm that the request for
       authentication is coming from a known location.
     </p>
@@ -182,13 +183,10 @@ Pivotal Operations Manager. These are found at **Credentials** &gt; **UAA** &gt;
         --name "Fleet Manager client for Service Instance Manager" \
         --scope "cloud_controller.read,cloud_controller.write,cloud_controller.admin_read_only,cloud_controller.global_auditor" \
         --authorized_grant_types "implicit" \
-        --redirect_uri "http://${SIM-ROUTE}/**,https://${SIM-ROUTE}/**" \
+        --redirect_uri "http://${SIM_ROUTE}/**,https://${SIM_ROUTE}/**" \
         --autoapprove "true" \
         --secret ""
     ```
-
-    Where `SIM-ROUTE` is the route where the <%= vars.product_short %> app is deployed on the host <%= vars.platform_name %>
-    foundation that you retrieved in the previous step. `SIM-ROUTE` must not contain a hyphen.
 
 <%= vars.product_short %> is now accessible at the route it was pushed to.
 
