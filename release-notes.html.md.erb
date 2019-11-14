@@ -15,14 +15,29 @@ owner: Fleet Management
 
 New features and changes in this release:
 
-- Service Instances can now be selected in order to perform a delete
-- When deleting multiple service instances the delete modal will show a summary of the distribution of the SI
+- You can use checkboxes to select service instances to delete.
+For more information, see [Delete Service Instances](./using.html#delete-instances).
+
+- When deleting multiple service instances, the delete dialog box shows a summary
+of the service instances you are deleting. 
+For more information, see [Delete Service Instances](./using.html#delete-instances).
 
 ### Resolved Issues
 
 This release has the following fix:
 
-- Fixed error message `[OUT] TypeError: Cannot read property 'imageUrl' of null` showing on foundations that did not provide imageUrl field for a Service Offering
+- The error message `[OUT] TypeError: Cannot read property 'imageUrl' of null` no longer shows
+on foundations that do not provide the `imageUrl` field for a service offering.
+
+### Known Issues
+
+This release has the following issues:
+
+* When targeting a <%= vars.platform_name %> foundation with tens of thousands of
+service instances, <%= vars.product_short %> can deny service to the Cloud Controller.
+This might cause the Cloud Controller to be slow to respond to requests, or not respond at all.
+For how to troubleshoot this issue, see [The Cloud Controller is Slow to Respond to Requests](./installing.html#cc-unresponsive).
+
 
 ## <a id="view"></a> View Release Notes for Another Version
 
