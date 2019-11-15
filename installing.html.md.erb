@@ -68,19 +68,20 @@ To configure the API app:
 
 1. Open the <code>config.json</code> file that you just extracted from the tarball in a text editor.
 
-1. Edit <code>config.json</code> to include a section for each target foundation, as in the example below.
+1. Edit <code>config.json</code> to include a section for each target foundation.
+The example below shows two foundations.
 
     ```
     [
       {
-        "name":"YOUR-PRODUCTION-PCF-DEPLOYMENT",
-        "cfApi":"SYS.PRODCF.EXAMPLE.COM"
+        "name":"TARGET-FOUNDATION",
+        "cfApi":"API-URL"
       },
       {
-        "name":"DEV-PCF-DEPLOYMENT",
-        "cfApi":"DEV-SYSTOM-DOMAIN.EXAMPLE.COM",
+        "name":"TARGET-FOUNDATION",
+        "cfApi":"API-URL",
         "client_id":"CUSTOM-UAA-CLIENT-ID",
-        "identityProviderName":"YOUR-SAML-PROVIDER"
+        "identityProviderName":"SAML-PROVIDER"
       }
       ...
     ]
@@ -88,12 +89,14 @@ To configure the API app:
 
     Where:
     <ul>
-      <li><code>YOUR-PRODUCTION-PCF-DEPLOYMENT</code> is a human-readable name for the target foundation.</li>
-      <li><code>SYS.PRODCF.EXAMPLE.COM</code> is the URL of the API endpoint for the target foundation.</li>
-      <li><code>CUSTOM-UAA-CLIENT-ID</code> is the <code>client_id</code> in the UAA of the target foundation.
-        You can create this client by following the steps in <a href="#create-client">Create a UAA Client</a>
-        below. If you do not set a custom ID, the ID <code>fleet-manager</code> is used.</li>
-      <li><code>YOUR-SAML-PROVIDER</code> is the name of the identity provider that you can optionally configure
+      <li><code>TARGET-FOUNDATION</code> is a human-readable name for the target foundation.</li>
+      <li><code>API-URL</code> is the URL of the API endpoint for the target foundation.</li>
+      <li><code>CUSTOM-UAA-CLIENT-ID</code> (Optional) is a custom <code>client_id</code>
+        that you can set when following the steps in
+        <a href="#create-client">Create a UAA Client</a> below.
+        If you do not set a custom ID, it defaults to <code>fleet-manager</code>.
+      </li>
+      <li><code>SAML-PROVIDER</code> (Optional) is the name of the identity provider that you can configure
         for UAA. If an identity provider is configured, the user need only log in once to use <%= vars.product_short %>.
         If you do not know the name of your identity provider, follow steps 1–4 of
         <a href="https://docs.pivotal.io/pivotalcf/opsguide/auth-sso.html#configure-pcf-for-saml">Configure Pivotal Application Service as a Service Provider for SAML</a>.</li>
