@@ -29,7 +29,7 @@ Follow the steps below to log in to <%= vars.product_short %>.
 
 You can filter service instances by a variety of properties.
 
-* To filter by name or GUID, enter a name or GUID in the search field.
+* To filter by service instance name or GUID, enter a name or GUID in the search field.
 
     <%= image_tag("images/search-by-name.png", :alt => "A name in the search field") %>
 
@@ -78,6 +78,12 @@ You can filter service instances by a variety of properties.
         <td>Either type the filter or click the tag</td>
         <td>Are of a specific service offering.<br>
           For example: <code>service:p-redis</code></td>
+        </tr>
+        <tr>
+        <td><code>plan:PLAN-NAME</code></td>
+        <td>Either type the filter or click the tag</td>
+        <td>Are of a specific service plan.<br>
+          For example: <code>plan:standard</code></td>
         </tr>
         <tr>
         <td><code>status:ok</code></td>
@@ -177,36 +183,21 @@ You can filter service instances by a variety of properties.
     </p>
 
 
-
 ## <a id="delete-instances"></a> Delete Service Instances
 
 <%= vars.product_short %> enables you to either delete individual service instances
 or delete multiple service instances based on a search or filter.
+You cannot delete service instances with service bindings, service keys, or route associations.
 
-<p class="note"><strong>Note:</strong>
-  <%= vars.product_short %> does not allow you to delete a service instance with
-  service bindings, service keys, or route associations.
-</p>
+To delete service instances:
 
-**To delete an individual service instance:**
+1. Filter for service instances without service bindings, service keys.
+You can filter further if necessary.
+For instructions on how to use these filters others, see [Filter Service Instances](#filter-instances).
 
-1. Click the service instance that you want to delete.
-1. Click **DELETE** at the bottom-right of the service instance card.
-1. Click **DELETE** in the warning pop-up.
-<br><br>
+1. Use the checkboxes to select the instances you want to delete.
 
-**To delete multiple service instances:**
+1. Click **DELETE**.
 
-1. Filter for the service instances that you want to delete.
-For instructions, see [Filter Service Instances](#filter-instances).
-
-1. Click **DELETE ALL**.
-
-    ![screenshot shows a filtered list of service instances with the delete button highlighted](multi-delete.png)
-
-    <p class="note"><strong>Note:</strong>
-      If any service instances in your filter have bindings or service keys,
-      <%= vars.product_short %> displays a warning pop-up, which allows you to
-      delete only the unbound service instances from your search.</p>
-
-1. Click **DELETE** in the warning pop-up.
+1. Click **DELETE** in the delete service instance dialog box.
+  ![](delete-dialog.png)
