@@ -199,41 +199,45 @@ Pivotal Operations Manager. These are found at **Credentials** &gt; **UAA** &gt;
 This section provides troubleshooting information for <%= vars.product_short %>.
 
 <%= partial vars.path_to_partials + "/troubleshoot-template", locals: {
-        description: 'Buildpack Unavailable',
-        symptom:<<~DESC,
 
-          During deployment of Service Instance Manager, the <code>cf push</code> command outputs the following error:
+    id: 'buildpack-unavailable',
 
-          <pre class="terminal" width="50">
-          $ Failed to clone git repository at <br>https://github.com/cloudfoundry/nodejs-buildpack.git
-          </pre>
-          DESC
+    description: 'Buildpack Unavailable',
 
+    symptom:<<~DESC,
 
-        cause:<<~DESC,
+    During deployment of Service Instance Manager, the <code>cf push</code> command outputs the following error:
 
-          The host Pivotal Platform foundation cannot retrieve the NodeJS buildpack from GitHub.
-          DESC
+    <pre class="terminal" width="50">
+    $ Failed to clone git repository at <br>https://github.com/cloudfoundry/nodejs-buildpack.git
+    </pre>
 
-        solution:<<~DESC,
+    DESC
 
-          To solve this issue, do the following:
+    cause: 'The host Pivotal Platform foundation cannot retrieve the NodeJS buildpack from GitHub.',
 
-            <ol>
-              <li>
-                <p>Look up the buildpack version listed in the <code>service-instance-manager/api/manifest.yml</code>.</p>
-              </li>
-              <li>
-                <p>Download the corresponding buildpack version from <a href="https://network.pivotal.io/products/nodejs-buildpack">NodeJS Buildpack</a> or GitHub.</p>
-              </li>
-              <li>
-                <p>Install the buildpack by running:</p>
-                <pre><code>cf create-buildpack BUILDPACK-PATH</code></pre>
-              </li>
-            </ol>
+    solution:<<~DESC,
 
+    To solve this issue, do the following:
 
-            DESC
+    <ol>
+
+    <li>
+    <p>Look up the buildpack version listed in the <code>service-instance-manager/api/manifest.yml</code>.</p>
+    </li>
+
+    <li>
+    <p>Download the corresponding buildpack version from <a href="https://network.pivotal.io/products/nodejs-buildpack">NodeJS Buildpack</a> or GitHub.</p>
+    </li>
+
+    <li>
+    <p>Install the buildpack by running:</p>
+    <pre><code>cf create-buildpack BUILDPACK-PATH</code></pre>
+    </li>
+
+    </ol>
+
+    DESC
 }
 %>
 
@@ -251,43 +255,49 @@ This section provides troubleshooting information for <%= vars.product_short %>.
     solution:<<~DESC,
 
     To solve this issue, do the following:
+    <ol>
 
-    1. Stop both Service Instance Manager apps:
+    <li>Stop both Service Instance Manager apps:
+    <ol>
 
-      1. Log in to the cf CLI for the Pivotal Platform foundation on which
-      you hosted Service Instance Manager by running:
+    <li>
+    Log in to the cf CLI for the Pivotal Platform foundation on which you
+    hosted Service Instance Manager by running:
+    <pre><code>cf api https<span>:</span>//api.HOST-CLOUD-FOUNDRY-DOMAIN
+    cf auth</code></pre>
 
-            ```
-            cf api https://api.HOST-CLOUD-FOUNDRY-DOMAIN
-            cf auth
-            ```
+    For example:
+    <pre class="terminal">
+    $ cf api https<span>:</span>//api.my-cloud-foundry.example.com
+    $ cf auth
+    </pre>
+    </li>
 
-            For example:
+    <li>
+    Target the org and space that you deployed Service Instance Manager in by running:
+    <pre><code>cf target -o HOST-ORG -s HOST-SPACE</code></pre>
+    </li>
 
-            <pre class="terminal">
-            $ cf api https<span>:</span>//api.my-cloud-foundry.example.com
-            $ cf auth
-            </pre>
+    <li>
+    Stop the apps by running:
+    <pre><code>cf stop service-instance-manager
+    cf stop service-instance-manager-api</code></pre>
+    </li>
 
-      1. Target the org and space that you deployed Service Instance Manager in by running:
+    </ol>
+    </li>
 
-            ```
-            cf target -o HOST-ORG -s HOST-SPACE
-            ```
-      1. Stop the apps by running:
-
-            ```
-            cf stop service-instance-manager
-            cf stop service-instance-manager-api
-            ```
-
-    1. Remove the section for the foundation that has an unresponsive Cloud Controller
+    <li>
+    Remove the section for the foundation that has an unresponsive Cloud Controller
     from the `config.json` that you edited as part of [Configure the API App](#api-app).
+    </li>
 
-    1. Run the install script to re-push the apps:
+    <li>
+    Run the install script to re-push the apps:
+    <pre><code>./install.sh</code></pre>
+    </li>
 
-        ```
-        ./install.sh
-        ```
+    </ol>
+
     DESC
 } %>
