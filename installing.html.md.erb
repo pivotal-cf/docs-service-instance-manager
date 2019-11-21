@@ -206,8 +206,7 @@ This section provides troubleshooting information for <%= vars.product_short %>.
 
     symptom:<<~DESC,
 
-    During deployment of Service Instance Manager, the <code>cf push</code> command<br>
-    outputs the following error:
+    During deployment of Service Instance Manager, the <code>cf push</code> command outputs the following error:
 
     <pre class="terminal" width="50">
     $ Failed to clone git repository at https://github.com/cloudfoundry/nodejs-buildpack.git
@@ -215,7 +214,7 @@ This section provides troubleshooting information for <%= vars.product_short %>.
 
     DESC
 
-    cause: 'The host Pivotal Platform foundation cannot retrieve the NodeJS buildpack<br>from GitHub.',
+    cause: 'The host Pivotal Platform foundation cannot retrieve the NodeJS buildpack from GitHub.',
 
     solution:<<~DESC,
 
@@ -228,7 +227,7 @@ This section provides troubleshooting information for <%= vars.product_short %>.
     </li>
 
     <li>
-    <p>Download the corresponding buildpack version from <br><a href="https://network.pivotal.io/products/nodejs-buildpack">NodeJS Buildpack</a> or GitHub.</p>
+    <p>Download the corresponding buildpack version from <a href="https://network.pivotal.io/products/nodejs-buildpack">NodeJS Buildpack</a> or GitHub.</p>
     </li>
 
     <li>
@@ -249,9 +248,9 @@ This section provides troubleshooting information for <%= vars.product_short %>.
 
     description: 'The Cloud Controller is Slow to Respond to Requests',
 
-    symptom: 'The Cloud Controller is slow to respond to requests, or does not respond at<br>all.',
+    symptom: 'The Cloud Controller is slow to respond to requests, or does not respond at all.',
 
-    cause: 'When targeting a Pivotal Platform foundation with tens of thousands of<br>service instances, Service Instance Manager can deny service to the Cloud <br>Controller.',
+    cause: 'When targeting a Pivotal Platform foundation with tens of thousands of service instances, Service Instance Manager can deny service to the Cloud <br>Controller.',
 
     solution:<<~DESC,
 
@@ -262,21 +261,19 @@ This section provides troubleshooting information for <%= vars.product_short %>.
     <ol>
 
     <li>
-    Log in to the cf CLI for the Pivotal Platform foundation on which you <br>
-    hosted Service Instance Manager by running:
+    Log in to the cf CLI for the Pivotal Platform foundation on which you hosted Service Instance Manager by running:
     <pre><code>cf api https<span>:</span>//api.HOST-CLOUD-FOUNDRY-DOMAIN
     cf auth</code></pre>
 
     For example:
     <pre class="terminal">
-    $ cf api https<span>:</span>//api.my-cloud-foundry.example.com
+    $ cf api https<span>:</span>//api.my-cloud-foundry.example.com api.my-cloud-foundry.example.com
     $ cf auth
     </pre>
     </li>
 
     <li>
-    Target the org and space that you deployed Service Instance Manager <br>
-    in by running:
+    Target the org and space that you deployed Service Instance Manager in by running:
     <pre><code>cf target -o HOST-ORG -s HOST-SPACE</code></pre>
     </li>
 
@@ -290,8 +287,8 @@ This section provides troubleshooting information for <%= vars.product_short %>.
     </li>
 
     <li>
-    Remove the section for the foundation that has an unresponsive Cloud <br>
-    Controller from the <code>config.json</code> that you edited as part of <a href="#api-app">Configure <br>the API App</a>.
+    Remove the section for the foundation that has an unresponsive Cloud Controller
+    from the <code>config.json</code> that you edited as part of <a href="#api-app">Configure the API App</a>.
     </li>
 
     <li>
