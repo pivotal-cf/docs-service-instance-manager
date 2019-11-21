@@ -25,12 +25,18 @@ For more information, see [Delete Service Instances](./using.html#delete-instanc
 - Users can filter service instances based on their service plan.
 For more information, see [Filter Service Instances](./using.html#filter-instances).
 
+### Updating from a previous version:
+
+- We recommend that when updating to this version of Service Instance Manager users review the configuration of their UAA clients. Specifically check that the clients include the "cloud_controller.admin" scope. Previous versions of SIM did not include this scope in their installation instructions. 
+
 ### Resolved Issues
 
 This release has the following fix:
 
 - The error message `[OUT] TypeError: Cannot read property 'imageUrl' of null` no longer shows
 on foundations that do not provide the `imageUrl` field for a service offering.
+
+- The release artifact README and installation script now include "cloud_controller.admin" as an additional scope on the UAA client that should be created in each target cloud foundry.
 
 ### Known Issues
 
