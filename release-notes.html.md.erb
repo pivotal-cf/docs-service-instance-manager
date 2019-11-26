@@ -38,3 +38,19 @@ For how to troubleshoot this issue, see [The Cloud Controller is Slow to Respond
 on foundations that do not provide the `imageUrl` field for a service offering.
 
 * When logged in with a user that has audit (read-only) access to a service instance, attempting to delete the service instance triggers a JSON error message.
+
+* The instructions in the installation script and README file in the release
+  artifact do not include the `cloud_controller.admin` scope on the UAA client that
+  you create in each target foundation.
+  Depending on how you have created the orgs and spaces in your foundations,
+  you might require this scope to allow an admin user to see all
+  service instances in <%= vars.product_short %>.<br><br>
+
+    To avoid this issue, Pivotal recommends that existing users update their SIM UAA clients to include this scope.
+    To do this, see [<%= vars.product_short %> Is Not Showing All Service Instances](./installing.html#instances-not-shown).
+
+
+## <a id="view"></a> View Release Notes for Another Version
+
+To view the release notes for another product version, select the version from
+the dropdown at the top of this page.

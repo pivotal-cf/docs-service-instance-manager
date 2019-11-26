@@ -214,7 +214,7 @@ The host <%= vars.platform_name %> foundation cannot retrieve the NodeJS buildpa
 
 #### Solution
 
-To solve this issue, do the following:
+To solve this issue:
 
 1. Look up the buildpack version listed in the `service-instance-manager/api/manifest.yml`.
 
@@ -240,7 +240,7 @@ service instances, <%= vars.product_short %> can deny service to the Cloud Contr
 
 #### Solution
 
-To solve this issue, do the following:
+To solve this issue:
 
 1. Stop both Service Instance Manager apps:
 
@@ -278,4 +278,30 @@ from the `config.json` that you edited as part of [Configure the API App](#api-a
 
     ```
     ./install.sh
+    ```
+
+### <a id='instances-not-shown'></a> <%= vars.product_short %> Is Not Showing All Service Instances
+
+#### Symptom
+
+When you are logged in as an admin user, <%= vars.product_short %> does not display all
+of the services instances that you expect to see from your target foundations.
+
+#### Explanation
+
+The UAA client that you created for each target foundation might be missing the `cloud_controller.admin` scope.
+
+Depending on how you have created the orgs and spaces in your foundations,
+you might require this scope to allow an admin user to see all
+service instances in <%= vars.product_short %>.
+
+#### Solution
+
+To solve this issue:
+
+1. Update the scopes on the UAA client to include `cloud_controller.admin` on each target foundation by running:
+
+    ```
+    uaac client update "fleet-manager" \
+        --scope "cloud_controller.read,cloud_controller.write,cloud_controller.admin_read_only,cloud_controller.admin,cloud_controller.global_auditor"
     ```
