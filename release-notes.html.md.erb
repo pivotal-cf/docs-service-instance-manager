@@ -45,21 +45,16 @@ For how to troubleshoot this issue, see [The Cloud Controller is Slow to Respond
 * The error message `[OUT] TypeError: Cannot read property 'imageUrl' of null` shows
 on foundations that do not provide the `imageUrl` field for a service offering.
 
-* The instructions in the installation script and the README file in the release
+* The instructions in the installation script and README file in the release
   artifact do not include the `cloud_controller.admin` scope on the UAA client that
   you create in each target foundation.
+  Depending on how you have created the orgs and spaces in your foundations,
+  you might require this scope to allow an admin user to see all
+  service instances in <%= vars.product_short %>.<br><br>
 
-    Depending on how you have created the orgs and spaces in your foundations,
-    you might require the `cloud_controller.admin` scope to allow an admin user to see all
-    service instances in <%= vars.product_short %>.
+    To avoid this issue, Pivotal recommends that existing users update their SIM UAA clients to include this scope.
+    To do this, see [<%= vars.product_short %> Is Not Showing All Service Instances](./installing.html#instances-not-shown).
 
-    Pivotal recommends that existing users update their SIM UAA clients to include this scope.
-    To do this, see []().
-
-    Recommended actions:
-
-      * Update the scopes of the UAA client on each target foundation by running the following command:
-    `uaac client update "fleet-manager" --scope "cloud_controller.read,cloud_controller.write,cloud_controller.admin_read_only,cloud_controller.admin,cloud_controller.global_auditor"`
 
 ## <a id="view"></a> View Release Notes for Another Version
 
