@@ -297,9 +297,19 @@ service instances in <%= vars.product_short %>.
 
 #### Solution
 
-To solve this issue:
+To solve this issue, do the following for each foundation:
 
-1. Update the scopes on the UAA client to include `cloud_controller.admin` on each target foundation by running:
+1. Confirm that the `cloud_controller.admin` scope is missing from the UAA client:
+  1. Authenticate with UAA for the foundation. For instructions, see steps 1 and 2 of [Create UAA Clients](#create-client).
+  <br><br>
+  1. Obtain the existing configurations of the client by running:
+
+        ```
+        uaac client get "fleet-manager"
+        ```
+  1. Check for the `cloud_controller.admin` scope in output of the above command.
+
+1. If the scope is missing, update the scopes on the UAA client by running:
 
     ```
     uaac client update "fleet-manager" \
