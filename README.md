@@ -21,7 +21,8 @@ Always make changes you want carried forward in the master branch. This includes
 
 | Branch Name| Use for… |
 |------------| ---------|
-| master     | v0.6 (staged here: http://docs-pcf-staging.cfapps.io/service-instance-manager/0-n/) |
+| master     | v0.7 (staged here: http://docs-pcf-staging.cfapps.io/service-instance-manager/0-n/) |
+| 0.6        | v0.6 (http://docs.pivotal.io/service-instance-manager/0-6/) |
 | 0.5        | v0.5 (http://docs.pivotal.io/service-instance-manager/0-5/) |
 | 0.4        | v0.4 (http://docs.pivotal.io/service-instance-manager/0-4/) |
 | 0.3        | v0.3 (http://docs.pivotal.io/service-instance-manager/0-3/) |
