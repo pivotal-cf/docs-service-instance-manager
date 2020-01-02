@@ -13,7 +13,10 @@ owner: Fleet Management
 
 ### Features
 
-* There is now a Service Consumption summary and graph.
+New features and changes in this release:
+
+* Adds a service consumption summary and graph.
+See [Service Consumption Summary](./using.html#service-consumption).
 
 ### Resolved Issues
 
@@ -27,9 +30,11 @@ This release has the following issues:
 * When targeting a <%= vars.platform_name %> foundation with tens of thousands of
 service instances, <%= vars.product_short %> can deny service to the Cloud Controller.
 This might cause the Cloud Controller to be slow to respond to requests, or not respond at all.
-For how to troubleshoot this issue, see [The Cloud Controller is Slow to Respond to Requests](./installing.html#cc-unresponsive).
+For how to troubleshoot this issue,
+see [The Cloud Controller is Slow to Respond to Requests](./installing.html#cc-unresponsive).
 
-* Targeting many <%= vars.platform_name %> foundations may result in a status code 431 Header fields too large error.
+* Targeting many <%= vars.platform_name %> foundations can
+result in a status code error, `431 Request Header Fields Too Large`.
 
 ## <a id="view"></a> View Release Notes for Another Version
 

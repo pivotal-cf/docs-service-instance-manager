@@ -183,22 +183,43 @@ You can filter service instances by a variety of properties.
     </p>
 
 
-## <a id="service-consumption"></a> Service Consumption
+## <a id="service-consumption"></a> Service Consumption Summary
 
-<%= vars.product_short %> provides an overview of the filtered foundations and their service instances.
- The information is provided in summary boxes and in a graph of service instance status.
+<%= vars.product_short %> provides a filtered overview of your foundations and service instances.
+ The information is provided in summary boxes and a graph of service instance status.
+ The default graph shows a summary of the bound states of instances by foundation.
 
-<%= image_tag("images/consumption.gif", :alt => "Service Consumption") %>
+To view a summary of instance consumption:
 
-The default graph will show a summary of the status of the filtered service instances.
-The bars can be grouped by foundation, org, service offering, bound state, or last operation status.
-The bars may be split by bound status, last operation status, or service offering.
+1. (Optional) If you want to filter service instances,
+    see [Filter Service Instances](#filter-instances) above. <br>
+    This changes the summary boxes, which provides information about the following:
+      + **Foundations:** This is the total number of foundations.
+      + **Orgs:** This is the total number of orgs.
+      + **Offerings:** This is the total number of available service offerings.
+      + **Instances:** This is the total number of instances.
+      + **Unbound:** This is the total number of unbound instances.
+      + **Failed:** This is the total number of failed operations.
 
-<%= image_tag("images/graph_offering_operation.png", :alt => "Summary graph by service offering and last operation statuses") %>
 
-<%= image_tag("images/graph_org_offering.png", :alt => "Summary graph by org and service offering") %>
+1. Select an option from the **For each** dropdown.<br>
+    The bars can be grouped by the following:
+    + **Foundation:** This shows the consumption of instances by foundation.
+    + **Org:** This shows the consumption of instances by org.
+    + **Service offering:** This shows the instances of a given service offering.
+    + **Bound state:** This shows the number of bound and unbound instances.
+    + **Last operation status:** This shows the number of running and errored instances.
 
-The summary boxes provide information about foundations, orgs, service offerings, total service instances, unbound service instances, and failed operations with the applied filters.
+1. Select an option from the **Show** dropdown.<br>
+    The bars can be segmented to show the following:
+    + **Service offering**
+    + **Bound status**
+    + **Last operation status**
+
+The gif below shows the **Service Consumption** summary boxes and graphs. <br> <br>
+<%= image_tag("images/consumption.gif", :alt => "Service Consumption summary") %>
+
+<a href="./images/consumption.gif" target="_blank">See a larger version of this image.</a>
 
 ## <a id="delete-instances"></a> Delete Service Instances
 
