@@ -44,13 +44,9 @@ on foundations that do not provide the `imageUrl` field for a service offering.
 
 ### Known Issues
 
-This release has the following issues:
+This release has the following issue:
 
-* When targeting a <%= vars.platform_name %> foundation with tens of thousands of
-service instances, <%= vars.product_short %> can deny service to the Cloud Controller.
-This might cause the Cloud Controller to be slow to respond to requests, or not respond at all.
-For how to troubleshoot this issue, see [The Cloud Controller is Slow to Respond to Requests](./installing.html#cc-unresponsive).
-
+<%= partial vars.path_to_partials + '/sim/ki-too-many-service-instances' %>
 
 ## <a id="view"></a> View Release Notes for Another Version
 
