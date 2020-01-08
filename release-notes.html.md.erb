@@ -23,11 +23,7 @@ For more information, see [View Consumption of Service Instances](./using.html#s
 
 This release has the following issues:
 
-* When targeting a <%= vars.platform_name %> foundation with more than 2000
-service instances, <%= vars.product_short %> can deny service to the Cloud Controller.
-This might cause the Cloud Controller to respond to requests slowly, or not at all.
-For how to troubleshoot this issue,
-see [The Cloud Controller is Slow to Respond to Requests](./installing.html#cc-unresponsive).
+<%= partial vars.path_to_partials + '/too-many-service-instances' %>
 
 * Targeting more than five <%= vars.platform_name %> foundations can
 result in the status code error `431 Request Header Fields Too Large`.
