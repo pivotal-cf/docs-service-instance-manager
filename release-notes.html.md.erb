@@ -32,3 +32,49 @@ result in the status code error `431 Request Header Fields Too Large`.
 
 To view the release notes for another product version, select the version from
 the dropdown at the top of this page.
+
+##<a id="0-6-0"></a> v0.6.0
+
+**Release Date:** December 11, 2019
+
+### Features
+
+New features and changes in this release:
+
+- You can use checkboxes to select service instances to delete.
+For more information, see [Delete Service Instances](./using.html#delete-instances).
+
+- When deleting multiple service instances, the delete dialog box shows a summary
+of the service instances you are deleting.
+For more information, see [Delete Service Instances](./using.html#delete-instances).
+
+- Users can filter service instances based on their service plan.
+For more information, see [Filter Service Instances](./using.html#filter-instances).
+
+
+### Resolved Issues
+
+This release has the following fixes:
+
+- The instructions in the installation script and the README file in the release artifact
+now include the `cloud_controller.admin` scope on the UAA client that you create
+in each target foundation.
+<p class="note"><strong>Note:</strong>
+If you are upgrading to  <%= vars.product_short %> v0.6, check whether the configuration for your UAA clients
+includes the `cloud_controller.admin` scope. If not, add the scope on each foundation.
+For instructions, see [Service Instance Manager Is Not Showing All Service Instances](https://docs.pivotal.io/service-instance-manager/0-5/installing.html#instances-not-shown).
+</p>
+- The error message `[OUT] TypeError: Cannot read property 'imageUrl' of null` no longer appears
+on foundations that do not provide the `imageUrl` field for a service offering.
+
+
+### Known Issues
+
+This release has the following issue:
+
+<%= partial vars.path_to_partials + '/sim/ki-too-many-service-instances' %>
+
+## <a id="view"></a> View Release Notes for Another Version
+
+To view the release notes for another product version, select the version from
+the dropdown at the top of this page.
