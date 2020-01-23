@@ -24,9 +24,9 @@ Always make changes you want carried forward in the master branch. This includes
 | master     | v0.8 (staged here: http://docs-pcf-staging.cfapps.io/service-instance-manager/0-n/) |
 | 0.7        | v0.7 (http://docs.pivotal.io/service-instance-manager/0-7/) |
 | 0.6        | v0.6 (http://docs.pivotal.io/service-instance-manager/0-6/) |
-| 0.5        | v0.5 (http://docs.pivotal.io/service-instance-manager/0-5/) |
-| 0.4        | v0.4 (http://docs.pivotal.io/service-instance-manager/0-4/) |
-| 0.3        | v0.3 (http://docs.pivotal.io/service-instance-manager/0-3/) |
+| 0.5        | Obsolete, removed 2020-01-23 |
+| 0.4        | Obsolete, removed 2020-01-23 |
+| 0.3        | Obsolete, removed 2020-01-23 |
 
 ### Cherry picking to and from MASTER
 
