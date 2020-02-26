@@ -15,13 +15,15 @@ owner: Fleet Management
 
 New features and changes in this release:
 
-<%# Insert new features and changes %>
+- Click through a portion of the bar chart in the Service Consumption dashboard to filter the search results.
+- Introduced in-memory cache (disabled by default, see see <a href="installing.html#enable-cache">Enable <%= vars.product_short %> cache</a>)
 
-### Known Issues
+### Resolved Issues
 
-This release has the following issues:
+This release has the following fixes:
 
-<%# Insert issues %>
+- Fixed '431 Request Header Fields Too Large' when targeting more than 4 foundations.
+- <%= vars.product_short %> is now limiting the amount of parallel request to ensure that it does not deny service to the Cloud Controller.
 
 ## <a id="view"></a> View Release Notes for Another Version
 
