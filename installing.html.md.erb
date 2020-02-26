@@ -31,16 +31,16 @@ To install and configure <%= vars.product_short %>:
 
 Before you begin installation, here are a few things to know about the networking and routing for the <%= vars.product_short %>:
 
-* The `service-instance-manager-api` app must be able to reach the Cloud Controller API for each target
-foundation. Depending on the network setup, extra steps might be required to allow traffic from the app to
-the target foundation.
+* The `service-instance-manager-api` app must be able to reach the Cloud Controller API (CAPI) for
+each target foundation. Depending on the network setup, extra steps might be required to allow
+traffic from the app to the target foundation.
 
 * The `service-instance-manager` web app only requires a connection to the `service-instance-manager-api`.
 The web app does not connect directly to the target foundations.
 
 * Because of browser cross-origin access, the `service-instance-manager-api` API app and the
-`service-instance-manager-api` web app must be pushed with the same route. The web app expects the API app to
- be available at `/api`.
+`service-instance-manager-api` web app must be pushed with the same route. The web app expects the
+API app to be available at `/api`.
 
 
 ## <a id='requirements'></a> Prerequisites
@@ -193,13 +193,16 @@ To create the clients in each target foundation, perform the following steps for
 
 <%= vars.product_short %> is now accessible at the route it was pushed to.
 
-## <a id='enable-cache'></a> (Optional) Enable <%= vars.product_short %> cache
+## <a id='enable-cache'></a> (Optional) Enable <%= vars.product_short %> Cache
 
-For large foundations (more than 2000 Service Instances/Service Bindings) it is important to enable <%= vars.product_short %> cache.
+You must enable <%= vars.product_short %> cache for foundations of more than 2000 service instances
+or service bindings.
 
 To enable the <%= vars.product_short %> cache:
 
-1. Set the SIM_CACHE_ENABLED environment variable in the <%= vars.product_short %> API app on the host <%= vars.platform_name %> foundation by running:
+1. Set the `SIM_CACHE_ENABLED` environment variable in the <%= vars.product_short %> API app on the
+host <%= vars.platform_name %> foundation by running:
+
    ```
    cf set-env service-instance-manager-api SIM_CACHE_ENABLED true
    ```
