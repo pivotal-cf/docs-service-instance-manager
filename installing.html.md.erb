@@ -1,5 +1,5 @@
 ---
-title: Installing and Configuring Pivotal Service Instance Manager
+title: Installing and Configuring Service Instance Manager
 owner: Fleet Management
 ---
 
@@ -10,8 +10,8 @@ This topic provides instructions for operators for how to install and configure 
 
 ## <a id='overview'></a> Overview
 
-<%= vars.product_short %> consists of two <%= vars.platform_name %> apps.
-These are deployed on a single host <%= vars.platform_name %> foundation.
+<%= vars.product_short %> consists of two apps.
+These are deployed on a single host foundation.
 
 The apps are:
 
@@ -47,9 +47,8 @@ API app to be available at `/api`.
 
 Before you install and configure <%= vars.product_short %>, you must have:
 
-1. The cf CLI. For how to install it, see
-<a href="https://docs.pivotal.io/pivotalcf/cf-cli/install-go-cli.html">Installing the cf CLI</a>
-in the <%= vars.platform_name %> documentation.
+1. The cf Command Line Interface (CLI). For how to install it, see
+<a href="https://docs.pivotal.io/pivotalcf/cf-cli/install-go-cli.html">Installing the cf CLI</a>.
 
 1. The User Account and Authentication Command Line Interface (UAAC).
 For how to install it, see <a href="https://github.com/cloudfoundry/cf-uaac">cf-uaac</a> on GitHub.
@@ -58,7 +57,7 @@ For how to install it, see <a href="https://github.com/cloudfoundry/cf-uaac">cf-
 ## <a id='download'></a> Download <%= vars.product_short %>
 
 Download the latest version of <%= vars.product_short %> from
-<a href="https://network.pivotal.io/products/service-instance-manager/">Pivotal Network</a>.
+<a href="https://network.pivotal.io/products/service-instance-manager/"><%= vars.product_network %></a>.
 
 ## <a id='api-app'></a> Configure the API App
 
@@ -99,14 +98,14 @@ The example below shows the configuration for two foundations.
       <li><code>SAML-PROVIDER</code> (Optional) is the name of the identity provider that you can configure
         for UAA. If an identity provider is configured, the user need only log in once to use <%= vars.product_short %>.
         If you do not know the name of your identity provider, follow steps 1–4 of
-        <a href="https://docs.pivotal.io/pivotalcf/opsguide/auth-sso.html#configure-pcf-for-saml">Configure Pivotal Application Service as a Service Provider for SAML</a>.</li>
+        <a href="https://docs.pivotal.io/pivotalcf/opsguide/auth-sso.html#configure-pcf-for-saml">Configure <%= vars.app_runtime_abbr %> as a Service Provider for SAML</a>.</li>
     </ul>
 
 ## <a id='deploying'></a> Deploy the Apps
 
 To install <%= vars.product_short %>, deploy the apps that you downloaded:
 
-1. Log in to the cf CLI for the <%= vars.platform_name %> foundation on which
+1. Log in to the cf CLI for the foundation on which
 you want to host <%= vars.product_short %> by running:
 
     ```
@@ -137,7 +136,7 @@ you want to host <%= vars.product_short %> by running:
 
 ## <a id='create-client'></a> Create UAA Clients
 
-Before logging in to <%= vars.product_short %>, you must create a client in the UAA of each target <%= vars.platform_name %>
+Before logging in to <%= vars.product_short %>, you must create a client in the UAA of each target
 foundation.
 This client is used to authenticate on behalf of the user when a user logs in to <%= vars.product_short %>.
 
@@ -165,7 +164,7 @@ To create the clients in each target foundation, perform the following steps for
     This command prompts for the admin credentials of UAA that you retrieved
     in the previous step.
 
-1. Retrieve the route where the <%= vars.product_short %> app is deployed on the host <%= vars.platform_name %> foundation by running:
+1. Retrieve the route where the <%= vars.product_short %> app is deployed on the host foundation by running:
 
     ```
     cf app service-instance-manager
@@ -173,7 +172,7 @@ To create the clients in each target foundation, perform the following steps for
     ```
     <p class="note">
       <strong>Note:</strong> The variable <code>SIM_ROUTE</code> is the route where the
-      <%= vars.product_short %> app is deployed on the host <%= vars.platform_name %>
+      <%= vars.product_short %> app is deployed on the host
       foundation. It is the same for every client in each target foundation.<br>
       <code>redirect_uri</code> is used by UAA to confirm that the request for
       authentication is coming from a known location.
@@ -201,7 +200,7 @@ or service bindings.
 To enable the <%= vars.product_short %> cache:
 
 1. Set the `SIM_CACHE_ENABLED` environment variable in the <%= vars.product_short %> API app on the
-host <%= vars.platform_name %> foundation by running:
+host foundation by running:
 
      ```
      cf set-env service-instance-manager-api SIM_CACHE_ENABLED true
@@ -227,7 +226,7 @@ This section provides troubleshooting information for <%= vars.product_short %>.
 
     DESC
 
-    cause: 'The host Pivotal Platform foundation cannot retrieve the NodeJS buildpack from GitHub.',
+    cause: 'The host foundation cannot retrieve the NodeJS buildpack from GitHub.',
 
     solution:<<~DESC,
 
@@ -263,7 +262,7 @@ This section provides troubleshooting information for <%= vars.product_short %>.
 
     symptom: 'The Cloud Controller is slow to respond to requests, or does not respond at all.',
 
-    cause: 'When targeting a Pivotal Platform foundation with tens of thousands of service instances, Service Instance Manager can deny service to the Cloud <br>Controller.',
+    cause: 'When targeting a foundation with tens of thousands of service instances, Service Instance Manager can deny service to the Cloud <br>Controller.',
 
     solution:<<~DESC,
 
@@ -274,7 +273,7 @@ This section provides troubleshooting information for <%= vars.product_short %>.
     <ol>
 
     <li>
-    Log in to the cf CLI for the Pivotal Platform foundation on which you hosted Service Instance Manager by running:
+    Log in to the cf CLI for the foundation on which you hosted Service Instance Manager by running:
     <pre><code>cf api https<span>:</span>//api.HOST-CLOUD-FOUNDRY-DOMAIN
     cf auth</code></pre>
 

@@ -1,4 +1,4 @@
-# Pivotal Service Instance Manager
+# Service Instance Manager
 
 ## Where is the book repo?
 https://github.com/pivotal-cf/docs-book-sim
@@ -37,7 +37,7 @@ Always make changes you want carried forward in the master branch. This includes
 ### Style Sheet
 
 We need to decide on product name short forms:
-+ Longest name = **Pivotal Service Instance Manager**
++ Longest name = **Service Instance Manager**
 + Short name, use on the page after the long name has been used = **Service Instance Manager**
 
 ## Pipelines
