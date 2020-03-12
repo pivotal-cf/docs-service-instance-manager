@@ -23,7 +23,10 @@ New features and changes in this release:
 This release has the following fixes:
 
 - Fixed the "431 Request Header Fields Too Large" error that occurred when targeting more than 4 foundations.
-- <%= vars.product_short %> now limits the number of parallel requests allowed to ensure that
+- <%= vars.product_short %> can now target more than 4 foundations with more than 2,000 service instances each. There is no maximum limit of service instances. <%= vars.product_short %> does not deny service to the Cloud Controller.
+
+
+<%= vars.product_short %> now limits the number of parallel requests allowed to ensure that
 <%= vars.product_short %> does not deny service to the Cloud Controller.
 
 ### Known Issues
