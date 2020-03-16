@@ -67,8 +67,8 @@ The following table provides version and version-support information about <%= v
 
 ## <a id="limitations"></a>Limitations
 
-<%= vars.product_short %> has been tested with 2000 service instances across two foundations.
-Higher numbers might impact the performance of <%= vars.app_runtime_abbr %> due to the large number of requests made to the Cloud Controller.
+When using <%= vars.product_short %> with more than 2000 service instances per foundation we recommend enabling the <%= vars.product_short%> cache, see [Enable <%= vars.product_short %> Cache](installing.html/#enable-cache).
+Enabling the <%= vars.product_short%> will reduce the impact on the performance of <%= vars.app_runtime_abbr %> due to requests made to the Cloud Controller.
 
 ## <a id="feedback"></a>Feedback
 
