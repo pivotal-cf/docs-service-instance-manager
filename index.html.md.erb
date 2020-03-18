@@ -5,7 +5,9 @@ owner: Fleet Management
 
 <strong><%= modified_date %></strong>
 
-<p class="note warning"><strong>Warning:</strong> <%= vars.product_full %> is currently in beta and might not receive long-term support.
+<p class="note warning">
+  <strong>Warning:</strong> <%= vars.product_full %> is currently in beta and might not receive long-term
+  support.
 </p>
 
 This documentation describes the <%= vars.product_full %>.
@@ -67,8 +69,11 @@ The following table provides version and version-support information about <%= v
 
 ## <a id="limitations"></a>Limitations
 
-<%= vars.product_short %> has been tested with 2000 service instances across two foundations.
-Higher numbers might impact the performance of <%= vars.app_runtime_abbr %> due to the large number of requests made to the Cloud Controller.
+When using <%= vars.product_short %> with more than 2000 service instances per foundation VMware recommends
+enabling the <%= vars.product_short%> cache.
+For more information, see [Enable <%= vars.product_short %> Cache](installing.html#enable-cache).
+Enabling the <%= vars.product_short%> cache reduces the impact on the performance of <%= vars.app_runtime_abbr %>
+caused by requests to the Cloud Controller.
 
 ## <a id="feedback"></a>Feedback
 
