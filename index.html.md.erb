@@ -69,11 +69,12 @@ The following table provides version and version-support information about <%= v
 
 ## <a id="limitations"></a>Limitations
 
-When using <%= vars.product_short %> with more than 2000 service instances per foundation VMware recommends
+When using <%= vars.product_short %> with more than 2000 service instances per foundation, VMware recommends
 enabling the <%= vars.product_short%> cache.
+Enabling the <%= vars.product_short%> cache reduces the impact that requests to the Cloud Controller have on
+<%= vars.app_runtime_abbr %> performance.
+
 For more information, see [Enable <%= vars.product_short %> Cache](installing.html#enable-cache).
-Enabling the <%= vars.product_short%> cache reduces the impact on the performance of <%= vars.app_runtime_abbr %>
-caused by requests to the Cloud Controller.
 
 ## <a id="feedback"></a>Feedback
 
