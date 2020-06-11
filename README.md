@@ -1,13 +1,9 @@
 # Service Instance Manager
 
 ## Where is the book repo?
-https://github.com/pivotal-cf/docs-book-sim
 
-The book repo uses these branches:
+The book repo associated with this content is [pivotal-cf/docs-book-sim]https://github.com/pivotal-cf/docs-book-sim).
 
-* **Edge** builds from the **master** content branch in this repo.
-Pipeline [here](https://concourse.run.pivotal.io/teams/cf-docs/pipelines/cf-services-edge?group=sim-edge).
-* **Master** builds from the published content branches in this repo. Pipeline [here](https://concourse.run.pivotal.io/teams/cf-docs/pipelines/cf-services?group=sim).
 
 ## Branches in this (content) repo
 
