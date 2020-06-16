@@ -2,7 +2,7 @@
 
 ## Where is the book repo?
 
-The book repo associated with this content is [pivotal-cf/docs-book-sim]https://github.com/pivotal-cf/docs-book-sim).
+The book repo associated with this content is [pivotal-cf/docs-book-sim](https://github.com/pivotal-cf/docs-book-sim).
 
 
 ## Branches in this (content) repo
