@@ -212,103 +212,79 @@ This section provides troubleshooting information for <%= vars.product_short %>.
 
 <%= partial vars.path_to_partials + "/troubleshoot-template", locals: {
 
-    id: 'buildpack-unavailable',
+  id: "buildpack-unavailable",
 
-    description: 'Buildpack Unavailable',
+  description: "Buildpack Unavailable",
 
-    symptom:<<~DESC,
+  symptom: "<p>During deployment of #{vars.product_short}, the <code>cf push</code>
+  command outputs the following error:</p>
+  <pre class='terminal'>$ Failed to clone git repository at https://github.com/cloudfoundry/nodejs-buildpack.git</pre>",
 
-    During deployment of Service Instance Manager, the <code>cf push</code> command outputs the following error:
+  cause: "<p>The host foundation cannot retrieve the NodeJS buildpack from GitHub.</p>",
 
-    <pre class="terminal" width="50">
-    $ Failed to clone git repository at https://github.com/cloudfoundry/nodejs-buildpack.git
-    </pre>
-
-    DESC
-
-    cause: 'The host foundation cannot retrieve the NodeJS buildpack from GitHub.',
-
-    solution:<<~DESC,
-
-    To solve this issue, do the following:
-
-    <ol>
-
+  solution: "<p>To solve this issue, do the following:</p>
+  <ol>
     <li>
-    <p>Look up the buildpack version listed in the <code>service-instance-manager/api/manifest.yml</code>.</p>
+      <p>Look up the buildpack version listed in the <code>service-instance-manager/api/manifest.yml</code>.</p>
     </li>
-
     <li>
-    <p>Download the corresponding buildpack version from <a href="https://network.pivotal.io/products/nodejs-buildpack">VMware Tanzu Network</a> or GitHub.</p>
+      <p>Download the corresponding buildpack version from <a href='https://network.pivotal.io/products/nodejs-buildpack'>VMware Tanzu Network</a> or GitHub.</p>
     </li>
-
     <li>
-    <p>Install the buildpack by running:</p>
-    <pre><code>cf create-buildpack BUILDPACK-PATH</code></pre>
+      <p>Install the buildpack by running:</p>
+      <pre><code>cf create-buildpack BUILDPACK-PATH</code></pre>
     </li>
-
-    </ol>
-
-    DESC
-}
-%>
+  </ol>"
+}%>
 
 
 <%= partial vars.path_to_partials + "/troubleshoot-template", locals: {
 
-    id: 'cc-unresponsive',
+  id: "cc-unresponsive",
 
-    description: 'The Cloud Controller is Slow to Respond to Requests',
+  description: "The Cloud Controller is Slow to Respond to Requests",
 
-    symptom: 'The Cloud Controller is slow to respond to requests, or does not respond at all.',
+  symptom: "<p>The Cloud Controller is slow to respond to requests, or does not respond at all.</p>",
 
-    cause: 'When targeting a foundation with tens of thousands of service instances, Service Instance Manager can deny service to the Cloud <br>Controller.',
+  cause: "<p>When targeting a foundation with tens of thousands of service instances,
+  #{vars.product_short} can deny service to the Cloud Controller.</p>",
 
-    solution:<<~DESC,
-
-    To solve this issue, do the following:
-    <ol>
-
-    <li>Stop both Service Instance Manager apps:
-    <ol>
-
+  solution: "<p>To solve this issue, do the following:</p>
+  <ol>
     <li>
-    Log in to the cf CLI for the foundation on which you hosted Service Instance Manager by running:
-    <pre><code>cf api https<span>:</span>//api.HOST-CLOUD-FOUNDRY-DOMAIN
-    cf auth</code></pre>
+      <p>Stop both #{vars.product_short} apps:</p>
+      <ol>
+        <li>
+          <p>Log in to the cf CLI for the foundation on which you hosted #{vars.product_short} by running:</p>
 
-    For example:
-    <pre class="terminal">
-    $ cf api https<span>:</span>//api.my-cloud-foundry.example.com api.my-cloud-foundry.example.com
-    $ cf auth
-    </pre>
+          <pre><code>cf api https<span>:</span>//api.HOST-CLOUD-FOUNDRY-DOMAIN <br>cf auth</code></pre>
+
+          <p>For example:</p>
+          <pre class='terminal'>$ cf api https<span>:</span>//api.my-cloud-foundry.example.com api.my-cloud-foundry.example.com <br>$ cf auth</pre>
+        </li>
+        <li>
+          <p>Target the org and space that you deployed #{vars.product_short} in by running:</p>
+
+          <pre><code>cf target -o HOST-ORG -s HOST-SPACE</code></pre>
+        </li>
+        <li>
+          <p>Stop the apps by running:</p>
+
+          <pre><code>cf stop service-instance-manager <br>cf stop service-instance-manager-api</code></pre>
+        </li>
+      </ol>
     </li>
-
     <li>
-    Target the org and space that you deployed Service Instance Manager in by running:
-    <pre><code>cf target -o HOST-ORG -s HOST-SPACE</code></pre>
+      <p>
+        Remove the section for the foundation that has an unresponsive Cloud Controller
+        from the <code>config.json</code> that you edited as part of <a href='#api-app'>Configure the API App</a>.
+      </p>
     </li>
-
     <li>
-    Stop the apps by running:
-    <pre><code>cf stop service-instance-manager
-    cf stop service-instance-manager-api</code></pre>
+      <p>Run the install script to re-push the apps:</p>
+      
+      <pre><code>./install.sh</code></pre>
     </li>
+  </ol>"
 
-    </ol>
-    </li>
-
-    <li>
-    Remove the section for the foundation that has an unresponsive Cloud Controller
-    from the <code>config.json</code> that you edited as part of <a href="#api-app">Configure the API App</a>.
-    </li>
-
-    <li>
-    Run the install script to re-push the apps:
-    <pre><code>./install.sh</code></pre>
-    </li>
-
-    </ol>
-
-    DESC
 } %>
