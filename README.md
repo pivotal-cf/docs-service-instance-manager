@@ -4,7 +4,6 @@
 
 The book repo associated with this content is [pivotal-cf/docs-book-sim](https://github.com/pivotal-cf/docs-book-sim).
 
-
 ## Branches in this (content) repo
 
 All documentation for the next unreleased version of Service Instance Manager is in `master`.
