@@ -38,10 +38,10 @@ We need to decide on product name short forms:
 
 ## Pipelines
 
-**Edge Pipeline**<br>
+**Edge Pipeline:**<br>
 The `master` branch builds to the <br> <strong>cf-services-edge > sim-edge</strong> pipeline, and does not go to production until release time: [Edge pipeline](https://concourse.run.pivotal.io/teams/cf-docs/pipelines/cf-services-edge?group=sim-edge). <br>
 
-**Production Pipeline**<br>
+**Production Pipeline:**<br>
 All live branches build to the <strong>cf-services > sim</strong> pipeline,
 and are manually pushed to production as needed: [Production pipeline](https://concourse.run.pivotal.io/teams/cf-docs/pipelines/cf-services?group=sim).
 
